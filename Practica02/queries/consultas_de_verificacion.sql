@@ -8,12 +8,12 @@ SHOW TABLES;
 SHOW TRIGGERS FROM db_test;
 
 /* Consultar los registros de los usuarios*/
-SELECT * FROM tb_users;
+SELECT COUNT(*) AS total_registros FROM tb_users;
 /* Consultar los registros de la bitacora */
-SELECT * FROM tb_logs;
+SELECT * FROM tb_users;
 
 /* Verifica los usuarios remotos creados en el servidor*/
-SELECT user,host FROM mysql.user WHERE host="%";
+SELECT User, Host from mysql.user WHERE Host = '%' AND account_locked = 'N';
 
 /* Verificar los roles asignados a los usuarios remotos creados en el servidor*/
 SELECT
