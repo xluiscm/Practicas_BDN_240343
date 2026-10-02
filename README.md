@@ -9,3 +9,4 @@ Periodo:Septiembre - Diciembre 2026
 |---|---|---|---|---|
 |1.|Práctica 02 | Conexión Remota en MYSQL| 5| 🟢 Conlcuida |
 |2.| Práctica 02 | Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales|60 |🟢 Conlcuida|
+
