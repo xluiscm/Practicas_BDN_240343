@@ -18,7 +18,7 @@ SELECT * FROM tb_users;
 SELECT 
     u.nickname, 
     u.email, 
-    b.db_users AS inserted_by, 
+    b.db_user AS inserted_by, 
     GROUP_CONCAT(DISTINCT re.FROM_USER ORDER BY re.FROM_USER SEPARATOR ', ' ) AS roles, 
     b.description, 
     b.operation_date 
@@ -27,11 +27,11 @@ JOIN db_test.tb_logs b
     ON b.description LIKE CONCAT('%', u.nickname, '%') 
     AND b.description LIKE CONCAT('%', u.email, '%') 
 LEFT JOIN mysql.role_edges re 
-    ON re.TO_USER = SUBSTRING_INDEX(b.db_users, '@', 1) 
-    AND SUBSTRING_INDEX(b.db_users, '@', 1) NOT IN ('aylin.luna', 'root')
+    ON re.TO_USER = SUBSTRING_INDEX(b.db_user, '@', 1) 
+    AND SUBSTRING_INDEX(b.db_user, '@', 1) NOT IN ('aylin.luna', 'root')
 WHERE b.operation = 'Create' 
   AND b.table_name = 'tb_users' 
-GROUP BY u.nick, u.email, b.db_users, b.description, b.operation_date 
+GROUP BY u.nickname, u.email, b.db_user, b.description, b.operation_date 
 ORDER BY b.operation_date ASC;
 
 /*Vusualizar todos los productos*/
