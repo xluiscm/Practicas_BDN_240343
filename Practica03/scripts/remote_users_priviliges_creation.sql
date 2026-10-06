@@ -44,6 +44,10 @@ GRANT SELECT, INSERT, UPDATE
 ON db_test.tbc_categories 
 TO 'support';
 
+GRANT SELECT, UPDATE
+ON db_test.tb_products
+TO 'support';
+
 -- Puede insertar y actualizar relaciones producto-categoría
 GRANT SELECT, INSERT, UPDATE 
 ON db_test.tbd_products_categories 
