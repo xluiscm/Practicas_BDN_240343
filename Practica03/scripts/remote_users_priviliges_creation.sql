@@ -1,21 +1,41 @@
+-- 0. LIMPIEZA PREVIA (Evita advertencias si ya existen usuarios o roles)
+DROP USER IF EXISTS 
+    'luis.cazarez'@'%', 
+    'marco.ramirez'@'%', 
+    'aylin.luna'@'%', 
+    'saul.barrios'@'%', 
+    'jonhy.neri'@'%', 
+    'juan.cruz'@'%', 
+    'carlos.morales'@'%';
+
+DROP ROLE IF EXISTS 
+    'superadmin', 
+    'admin', 
+    'seller', 
+    'buyer', 
+    'common_user', 
+    'user_not_registered', 
+    'support';
+
+
 -- 1. CREACION DE USUARIOS REMOTOS
-CREATE USER IF NOT EXISTS 'luis.cazarez'@'%' IDENTIFIED BY '240343'; -- super admin
-CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY 'qwerty123'; -- Profe
-CREATE USER IF NOT EXISTS 'aylin.luna'@'%' IDENTIFIED BY '240853'; -- primer vendedor
-CREATE USER IF NOT EXISTS 'saul.barrios'@'%' IDENTIFIED BY '240196'; -- support
-CREATE USER IF NOT EXISTS 'jonhy.neri'@'%' IDENTIFIED BY '240558'; -- segundo vendedor
-CREATE USER IF NOT EXISTS 'juan.cruz'@'%' IDENTIFIED BY '240148'; -- usuario
-CREATE USER IF NOT EXISTS 'carlos.morales'@'%' IDENTIFIED BY '240221'; -- usuario
+CREATE USER 'luis.cazarez'@'%' IDENTIFIED BY '240343'; -- super admin
+CREATE USER 'marco.ramirez'@'%' IDENTIFIED BY 'qwerty123'; -- Profe
+CREATE USER 'aylin.luna'@'%' IDENTIFIED BY '240853'; -- primer vendedor
+CREATE USER 'saul.barrios'@'%' IDENTIFIED BY '240196'; -- support
+CREATE USER 'jonhy.neri'@'%' IDENTIFIED BY '240558'; -- segundo vendedor
+CREATE USER 'juan.cruz'@'%' IDENTIFIED BY '240148'; -- usuario
+CREATE USER 'carlos.morales'@'%' IDENTIFIED BY '240221'; -- usuario
 
 
 -- 2. CREACION DE ROLES PARA ECOMMERCE
-CREATE ROLE IF NOT EXISTS 'superadmin';
-CREATE ROLE IF NOT EXISTS 'admin';
-CREATE ROLE IF NOT EXISTS 'seller';
-CREATE ROLE IF NOT EXISTS 'buyer';
-CREATE ROLE IF NOT EXISTS 'common_user';
-CREATE ROLE IF NOT EXISTS 'user_not_registered';
-CREATE ROLE IF NOT EXISTS 'support';
+CREATE ROLE 'superadmin';
+CREATE ROLE 'admin';
+CREATE ROLE 'seller';
+CREATE ROLE 'buyer';
+CREATE ROLE 'common_user';
+CREATE ROLE 'user_not_registered';
+CREATE ROLE 'support';
 
 
 -- 3. ASIGNACION DE PRIVILEGIOS A LOS ROLES
@@ -63,9 +83,10 @@ GRANT SELECT
 ON mysql.role_edges 
 TO 'support';
 
+-- Corregido para aplicarse directamente al rol 'support'
 GRANT EXECUTE 
 ON PROCEDURE db_test.sp_soft_delete_user
-TO 'support'@'%';
+TO 'support';
 
 -- SELLER (Se agregó INSERT y UPDATE a tbc_categories para permitir carga de datos)
 GRANT SELECT, INSERT, UPDATE 
