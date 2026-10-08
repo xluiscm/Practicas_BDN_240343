@@ -2,7 +2,7 @@
 CREATE USER IF NOT EXISTS 'luis.cazarez'@'%' IDENTIFIED BY '240343'; -- super admin
 CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY 'qwerty123'; -- Profe
 CREATE USER IF NOT EXISTS 'aylin.luna'@'%' IDENTIFIED BY '240853'; -- primer vendedor
-CREATE USER IF NOT EXISTS 'angel.barrios'@'%' IDENTIFIED BY '240196'; -- support
+CREATE USER IF NOT EXISTS 'saul.barrios'@'%' IDENTIFIED BY '240196'; -- support
 CREATE USER IF NOT EXISTS 'jonhy.neri'@'%' IDENTIFIED BY '240558'; -- segundo vendedor
 CREATE USER IF NOT EXISTS 'juan.cruz'@'%' IDENTIFIED BY '240148'; -- usuario
 CREATE USER IF NOT EXISTS 'carlos.morales'@'%' IDENTIFIED BY '240221'; -- usuario
@@ -63,13 +63,16 @@ GRANT SELECT
 ON mysql.role_edges 
 TO 'support';
 
+GRANT EXECUTE 
+ON PROCEDURE db_test.sp_soft_delete_user
+TO 'support'@'%';
 
--- SELLER
+-- SELLER (Se agregó INSERT y UPDATE a tbc_categories para permitir carga de datos)
 GRANT SELECT, INSERT, UPDATE 
 ON db_test.tb_products 
 TO 'seller';
 
-GRANT SELECT 
+GRANT SELECT, INSERT, UPDATE 
 ON db_test.tbc_categories 
 TO 'seller';
 
@@ -83,7 +86,7 @@ TO 'common_user';
 -- 4. ASIGNACION DE ROLES A LOS USUARIOS
 GRANT 'superadmin' TO 'luis.cazarez'@'%';
 GRANT 'admin' TO 'marco.ramirez'@'%';
-GRANT 'support' TO 'angel.barrios'@'%';
+GRANT 'support' TO 'saul.barrios'@'%';
 GRANT 'seller' TO 'aylin.luna'@'%';
 GRANT 'seller' TO 'jonhy.neri'@'%';
 GRANT 'common_user' TO 'juan.cruz'@'%';
@@ -95,7 +98,7 @@ SET DEFAULT ROLE ALL TO
     'luis.cazarez'@'%',
     'marco.ramirez'@'%', 
     'aylin.luna'@'%', 
-    'angel.barrios'@'%',
+    'saul.barrios'@'%',
     'jonhy.neri'@'%',
     'juan.cruz'@'%',
     'carlos.morales'@'%';
