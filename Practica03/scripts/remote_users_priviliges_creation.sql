@@ -13,7 +13,7 @@ DROP ROLE IF EXISTS
     'admin',
     'seller',
     'buyer',
-    'common_user',
+    'common',
     'user_not_registered',
     'support';
 
@@ -33,7 +33,7 @@ CREATE ROLE 'superadmin';
 CREATE ROLE 'admin';
 CREATE ROLE 'seller';
 CREATE ROLE 'buyer';
-CREATE ROLE 'common_user';
+CREATE ROLE 'common';
 CREATE ROLE 'user_not_registered';
 CREATE ROLE 'support';
 
@@ -88,14 +88,6 @@ GRANT SELECT, UPDATE ON db_test.tb_seller_orders TO 'seller';
 GRANT SELECT ON db_test.tbd_order_items TO 'seller';
 
 -- ---------------------------------------------------------------------
--- COMMON USER (solo lectura del catálogo)
--- ---------------------------------------------------------------------
-GRANT SELECT ON db_test.tb_products TO 'common_user';
-GRANT SELECT ON db_test.tbc_categories TO 'common_user';
-GRANT SELECT ON db_test.tbd_products_categories TO 'common_user';
-GRANT SELECT ON db_test.tbd_users_offer_products TO 'common_user';
-
--- ---------------------------------------------------------------------
 -- BUYER
 -- ---------------------------------------------------------------------
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_carts TO 'buyer';
@@ -108,20 +100,31 @@ GRANT SELECT, INSERT ON db_test.tb_payments TO 'buyer';
 GRANT SELECT, INSERT ON db_test.tb_payment_transactions TO 'buyer';
 
 -- ---------------------------------------------------------------------
+-- COMMON (registro + lectura del catálogo)
+-- ---------------------------------------------------------------------
+GRANT INSERT ON db_test.tb_people  TO 'common';
+GRANT INSERT ON db_test.tb_users   TO 'common';
+
+GRANT SELECT ON db_test.tb_products              TO 'common';
+GRANT SELECT ON db_test.tbc_categories           TO 'common';
+GRANT SELECT ON db_test.tbd_products_categories  TO 'common';
+GRANT SELECT ON db_test.tbd_users_offer_products TO 'common';
+
+-- ---------------------------------------------------------------------
 -- USER_NOT_REGISTERED: sin privilegios (rol reservado)
 -- ---------------------------------------------------------------------
 
 
 -- 4. ASIGNACION DE ROLES A LOS USUARIOS
-GRANT 'superadmin'  TO 'luis.cazarez'@'%';
-GRANT 'admin'       TO 'marco.ramirez'@'%';
-GRANT 'support'     TO 'saul.barrios'@'%';
-GRANT 'seller'      TO 'aylin.luna'@'%';
-GRANT 'seller'      TO 'jonhy.neri'@'%';
-GRANT 'common_user' TO 'juan.cruz'@'%';
-GRANT 'buyer'       TO 'juan.cruz'@'%';
-GRANT 'common_user' TO 'carlos.morales'@'%';
-GRANT 'buyer'       TO 'carlos.morales'@'%';
+GRANT 'superadmin' TO 'luis.cazarez'@'%';
+GRANT 'admin'      TO 'marco.ramirez'@'%';
+GRANT 'support'    TO 'saul.barrios'@'%';
+GRANT 'seller'     TO 'aylin.luna'@'%';
+GRANT 'seller'     TO 'jonhy.neri'@'%';
+GRANT 'common'     TO 'juan.cruz'@'%';
+GRANT 'buyer'      TO 'juan.cruz'@'%';
+GRANT 'common'     TO 'carlos.morales'@'%';
+GRANT 'buyer'      TO 'carlos.morales'@'%';
 
 
 -- 5. ACTIVACION AUTOMATICA DE ROLES PARA TODOS LOS USUARIOS
