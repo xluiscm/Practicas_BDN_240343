@@ -1,0 +1,6 @@
+# Archivos de herramientas
+.agents/
+skills-lock.json
+
+# Copias de respaldo HTML
+*.bak.html
