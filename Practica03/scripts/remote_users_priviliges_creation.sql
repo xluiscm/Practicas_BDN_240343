@@ -6,7 +6,9 @@ DROP USER IF EXISTS
     'saul.barrios'@'%',
     'jonhy.neri'@'%',
     'juan.cruz'@'%',
-    'carlos.morales'@'%';
+    'carlos.morales'@'%',
+    'app_web'@'%',
+    'app_movil'@'%';
 
 DROP ROLE IF EXISTS
     'superadmin',
@@ -26,6 +28,8 @@ CREATE USER 'saul.barrios'@'%'   IDENTIFIED BY '240196';    -- support
 CREATE USER 'jonhy.neri'@'%'     IDENTIFIED BY '240558';    -- segundo vendedor
 CREATE USER 'juan.cruz'@'%'      IDENTIFIED BY '240148';    -- usuario / comprador
 CREATE USER 'carlos.morales'@'%' IDENTIFIED BY '240221';    -- usuario / comprador
+CREATE USER 'app_web'@'%'        IDENTIFIED BY 'Web123';    -- aplicación web (registro)
+CREATE USER 'app_movil'@'%'      IDENTIFIED BY 'Mobile890'; -- aplicación móvil (registro)
 
 
 -- 2. CREACION DE ROLES PARA ECOMMERCE
@@ -111,8 +115,10 @@ GRANT SELECT ON db_test.tbd_products_categories  TO 'common';
 GRANT SELECT ON db_test.tbd_users_offer_products TO 'common';
 
 -- ---------------------------------------------------------------------
--- USER_NOT_REGISTERED: sin privilegios (rol reservado)
+-- USER_NOT_REGISTERED (registro de nuevos usuarios)
 -- ---------------------------------------------------------------------
+GRANT INSERT ON db_test.tb_people TO 'user_not_registered';
+GRANT INSERT ON db_test.tb_users  TO 'user_not_registered';
 
 
 -- 4. ASIGNACION DE ROLES A LOS USUARIOS
@@ -125,6 +131,8 @@ GRANT 'common'     TO 'juan.cruz'@'%';
 GRANT 'buyer'      TO 'juan.cruz'@'%';
 GRANT 'common'     TO 'carlos.morales'@'%';
 GRANT 'buyer'      TO 'carlos.morales'@'%';
+GRANT 'user_not_registered' TO 'app_web'@'%';
+GRANT 'user_not_registered' TO 'app_movil'@'%';
 
 
 -- 5. ACTIVACION AUTOMATICA DE ROLES PARA TODOS LOS USUARIOS
@@ -135,7 +143,9 @@ SET DEFAULT ROLE ALL TO
     'saul.barrios'@'%',
     'jonhy.neri'@'%',
     'juan.cruz'@'%',
-    'carlos.morales'@'%';
+    'carlos.morales'@'%',
+    'app_web'@'%',
+    'app_movil'@'%';
 
 
 -- 6. REFRESCAR PRIVILEGIOS
