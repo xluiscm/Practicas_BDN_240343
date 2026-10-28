@@ -4,3 +4,9 @@ skills-lock.json
 
 # Copias de respaldo HTML
 *.bak.html
+
+_chrome_profile/
+_chrome_profile2/
+_chrome_profile3/
+_chrome_profile4/
+_edge_profile/
