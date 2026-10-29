@@ -1,3 +1,11 @@
+# Archivos de herramientas
+.agents/
+skills-lock.json
+
+# Copias de respaldo HTML
+*.bak.html
+
+# Perfiles de navegadores y temporales
 _chrome_profile/
 _chrome_profile*/
 _edge_profile/

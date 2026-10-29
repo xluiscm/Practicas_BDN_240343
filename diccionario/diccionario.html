@@ -1,0 +1,278 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Diccionario de datos db_test</title><style>body{font:15px system-ui;max-width:1200px;margin:2rem auto;padding:0 1rem;color:#172538;background:#f4f7fb}header,details{background:white;border:1px solid #d7e0ea;border-radius:10px;padding:1rem;margin:.7rem 0}summary{cursor:pointer;font-size:1.1rem}table{border-collapse:collapse;width:100%;margin-top:.8rem}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #d7e0ea;padding:.45rem}code{overflow-wrap:anywhere}input{padding:.6rem;width:min(30rem,90%)}</style>
+<header><h1>Diccionario de datos: db_test</h1><p>Fuente: <code>Practica03/backups/28102026.sql</code> · 27 tablas · 221 campos</p><p><a href="campos.csv">CSV</a> · <a href="anexo_tecnico.md">Anexo técnico SQL</a> · <a href="relaciones.html">Relaciones</a> · <a href="auditoria.html">Auditoría</a></p><input id="q" placeholder="Buscar tabla o campo"></header>
+<details><summary><b>tb_buyer_orders</b> — 9 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>key</code></td><td><code>varchar(40) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>user_ID</code></td><td><code>int NOT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>total_products</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>total_cost</code></td><td><code>decimal(10,3) NOT NULL DEFAULT &#x27;0.000&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0.000&#x27;</code></td></tr>
+<tr><td><code>status_string</code></td><td><code>enum(&#x27;Registered&#x27;,&#x27;Wishlist&#x27;,&#x27;Payed&#x27;,&#x27;Canceled&#x27;,&#x27;Delivered&#x27;,&#x27;Devolved&#x27;,&#x27;Attended&#x27;,&#x27;Sended&#x27;) NOT NULL DEFAULT &#x27;Registered&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;Registered&#x27;</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>Sí</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_carts</b> — 5 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>user_ID</code></td><td><code>int NOT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>status</code></td><td><code>enum(&#x27;Active&#x27;,&#x27;Converted&#x27;,&#x27;Abandoned&#x27;) NOT NULL DEFAULT &#x27;Active&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;Active&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_logs</b> — 7 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>table_name</code></td><td><code>varchar(100) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>table_operation</code></td><td><code>enum(&#x27;Create&#x27;,&#x27;Read&#x27;,&#x27;Update&#x27;,&#x27;Delete&#x27;) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>db_user</code></td><td><code>varchar(80) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>description</code></td><td><code>text NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>operation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>operation_status</code></td><td><code>bit(1) DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>Sí</td><td><code>b&#x27;1&#x27;</code></td></tr>
+</table></details>
+<details><summary><b>tb_order_cancellations</b> — 11 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>cancellation_ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>order_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_buyer_orders.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>seller_order_ID</code></td><td><code>int unsigned DEFAULT NULL</code></td><td>FK tb_seller_orders.ID; INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>product_offer_ID</code></td><td><code>int unsigned DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>requested_by</code></td><td><code>int NOT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>cancellation_reason</code></td><td><code>varchar(500) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>cancellation_status</code></td><td><code>enum(&#x27;Requested&#x27;,&#x27;Approved&#x27;,&#x27;Rejected&#x27;,&#x27;Completed&#x27;) NOT NULL DEFAULT &#x27;Requested&#x27;</code></td><td>INDEX</td><td>No</td><td><code>&#x27;Requested&#x27;</code></td></tr>
+<tr><td><code>requested_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>resolved_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_payment_transactions</b> — 7 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>payment_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_payments.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>event_type</code></td><td><code>enum(&#x27;Created&#x27;,&#x27;Authorized&#x27;,&#x27;Captured&#x27;,&#x27;Failed&#x27;,&#x27;Refunded&#x27;,&#x27;PartiallyRefunded&#x27;,&#x27;Voided&#x27;) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>amount</code></td><td><code>decimal(12,2) NOT NULL DEFAULT &#x27;0.00&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0.00&#x27;</code></td></tr>
+<tr><td><code>event_reference</code></td><td><code>varchar(150) DEFAULT NULL</code></td><td>INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>remarks</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>—</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+</table></details>
+<details><summary><b>tb_payments</b> — 12 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>order_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_buyer_orders.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>amount</code></td><td><code>decimal(12,2) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>currency</code></td><td><code>char(3) NOT NULL DEFAULT &#x27;MXN&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;MXN&#x27;</code></td></tr>
+<tr><td><code>payment_method</code></td><td><code>enum(&#x27;Card&#x27;,&#x27;SPEI&#x27;,&#x27;Transfer&#x27;,&#x27;Cash&#x27;,&#x27;Other&#x27;) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>provider</code></td><td><code>varchar(50) DEFAULT NULL</code></td><td>INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>provider_reference</code></td><td><code>varchar(150) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>idempotency_key</code></td><td><code>varchar(100) DEFAULT NULL</code></td><td>INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>payment_status</code></td><td><code>enum(&#x27;Pending&#x27;,&#x27;Authorized&#x27;,&#x27;Paid&#x27;,&#x27;Failed&#x27;,&#x27;Refunded&#x27;,&#x27;PartiallyRefunded&#x27;) NOT NULL DEFAULT &#x27;Pending&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;Pending&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>paid_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_people</b> — 12 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>person_ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>user_ID</code></td><td><code>int DEFAULT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>courtesy_title</code></td><td><code>varchar(20) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>given_names</code></td><td><code>varchar(150) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>family_names</code></td><td><code>varchar(150) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>birth_date</code></td><td><code>date DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>gender_ID</code></td><td><code>tinyint unsigned DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>country_code</code></td><td><code>char(2) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>phone</code></td><td><code>varchar(25) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>Sí</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+</table></details>
+<details><summary><b>tb_products</b> — 9 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>SKU</code></td><td><code>varchar(50) NOT NULL</code></td><td>INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>name</code></td><td><code>varchar(250) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>—</code></td></tr>
+<tr><td><code>current_price</code></td><td><code>decimal(10,2) NOT NULL DEFAULT &#x27;0.00&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0.00&#x27;</code></td></tr>
+<tr><td><code>current_stock</code></td><td><code>int unsigned NOT NULL DEFAULT &#x27;0&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0&#x27;</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>Sí</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+</table></details>
+<details><summary><b>tb_refunds</b> — 13 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>refund_ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>payment_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_payments.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>cancellation_ID</code></td><td><code>bigint unsigned DEFAULT NULL</code></td><td>FK tb_order_cancellations.cancellation_ID; INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>return_ID</code></td><td><code>bigint unsigned DEFAULT NULL</code></td><td>FK tb_returns.return_ID; INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>amount</code></td><td><code>decimal(12,2) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>currency</code></td><td><code>char(3) NOT NULL DEFAULT &#x27;MXN&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;MXN&#x27;</code></td></tr>
+<tr><td><code>refund_reason</code></td><td><code>varchar(500) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>refund_status</code></td><td><code>enum(&#x27;Requested&#x27;,&#x27;Approved&#x27;,&#x27;Processing&#x27;,&#x27;Completed&#x27;,&#x27;Failed&#x27;,&#x27;Rejected&#x27;) NOT NULL DEFAULT &#x27;Requested&#x27;</code></td><td>INDEX</td><td>No</td><td><code>&#x27;Requested&#x27;</code></td></tr>
+<tr><td><code>provider_reference</code></td><td><code>varchar(150) DEFAULT NULL</code></td><td>INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>requested_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>completed_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_returns</b> — 13 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>return_ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>order_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_buyer_orders.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>product_offer_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>requested_by</code></td><td><code>int NOT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>quantity</code></td><td><code>int unsigned NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>return_reason</code></td><td><code>enum(&#x27;Defective&#x27;,&#x27;Damaged&#x27;,&#x27;WrongProduct&#x27;,&#x27;NotAsDescribed&#x27;,&#x27;WrongSize&#x27;,&#x27;ChangedMind&#x27;,&#x27;Other&#x27;) NOT NULL DEFAULT &#x27;Other&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;Other&#x27;</code></td></tr>
+<tr><td><code>return_status</code></td><td><code>enum(&#x27;Requested&#x27;,&#x27;Authorized&#x27;,&#x27;Rejected&#x27;,&#x27;InTransit&#x27;,&#x27;Received&#x27;,&#x27;Inspected&#x27;,&#x27;Completed&#x27;) NOT NULL DEFAULT &#x27;Requested&#x27;</code></td><td>INDEX</td><td>No</td><td><code>&#x27;Requested&#x27;</code></td></tr>
+<tr><td><code>inspection_notes</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>—</code></td></tr>
+<tr><td><code>requested_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>received_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>completed_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_seller_orders</b> — 8 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>order_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_buyer_orders.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>seller_ID</code></td><td><code>int NOT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>subtotal</code></td><td><code>decimal(12,2) NOT NULL DEFAULT &#x27;0.00&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0.00&#x27;</code></td></tr>
+<tr><td><code>shipping_cost</code></td><td><code>decimal(12,2) NOT NULL DEFAULT &#x27;0.00&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0.00&#x27;</code></td></tr>
+<tr><td><code>fulfillment_status</code></td><td><code>enum(&#x27;Pending&#x27;,&#x27;Accepted&#x27;,&#x27;Preparing&#x27;,&#x27;Sent&#x27;,&#x27;Delivered&#x27;,&#x27;Canceled&#x27;,&#x27;Returned&#x27;) NOT NULL DEFAULT &#x27;Pending&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;Pending&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_shipments</b> — 11 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>shipment_ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>seller_order_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_seller_orders.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>carrier</code></td><td><code>varchar(100) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>tracking_number</code></td><td><code>varchar(150) DEFAULT NULL</code></td><td>INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>tracking_url</code></td><td><code>varchar(500) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>shipment_status</code></td><td><code>enum(&#x27;Pending&#x27;,&#x27;Preparing&#x27;,&#x27;Shipped&#x27;,&#x27;InTransit&#x27;,&#x27;OutForDelivery&#x27;,&#x27;Delivered&#x27;,&#x27;DeliveryFailed&#x27;,&#x27;Lost&#x27;,&#x27;Returned&#x27;) NOT NULL DEFAULT &#x27;Pending&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;Pending&#x27;</code></td></tr>
+<tr><td><code>shipped_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>estimated_delivery_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>delivered_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_user_addresses</b> — 12 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>user_ID</code></td><td><code>int NOT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>address_label</code></td><td><code>varchar(100) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>recipient_name</code></td><td><code>varchar(150) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>recipient_phone</code></td><td><code>varchar(25) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>delivery_instructions</code></td><td><code>varchar(500) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>latitude</code></td><td><code>decimal(10,7) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>longitude</code></td><td><code>decimal(10,7) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>is_default</code></td><td><code>tinyint(1) NOT NULL DEFAULT &#x27;0&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0&#x27;</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tb_users</b> — 8 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>email</code></td><td><code>varchar(80) NOT NULL</code></td><td>INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>nick</code></td><td><code>varchar(100) NOT NULL</code></td><td>INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>password</code></td><td><code>varchar(255) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_login</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+</table></details>
+<details><summary><b>tbc_categories</b> — 7 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>name</code></td><td><code>varchar(120) NOT NULL</code></td><td>INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>—</code></td></tr>
+<tr><td><code>sup_id_category</code></td><td><code>int unsigned DEFAULT NULL</code></td><td>FK tbc_categories.ID; INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+</table></details>
+<details><summary><b>tbc_payment_methods_types</b> — 6 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>code</code></td><td><code>varchar(30) NOT NULL</code></td><td>INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>description</code></td><td><code>text NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tbc_payment_methods_types_res</b> — 4 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>id</code></td><td><code>int NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>name</code></td><td><code>varchar(100) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>—</code></td></tr>
+<tr><td><code>is_active</code></td><td><code>tinyint(1) DEFAULT &#x27;1&#x27;</code></td><td>—</td><td>Sí</td><td><code>&#x27;1&#x27;</code></td></tr>
+</table></details>
+<details><summary><b>tbd_address_components</b> — 8 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>address_ID</code></td><td><code>bigint unsigned NOT NULL</code></td><td>FK tb_user_addresses.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>value</code></td><td><code>varchar(255) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>component_type</code></td><td><code>varchar(50) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>address_sup_ID</code></td><td><code>bigint unsigned DEFAULT NULL</code></td><td>FK tbd_address_components.address_ID`, `ID</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tbd_cancellation_items</b> — 5 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>id</code></td><td><code>int NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>cancellation_id</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>order_item_id</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>quantity</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>reason</code></td><td><code>varchar(255) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tbd_cart_items</b> — 5 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>cart_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>PK; FK tb_carts.ID</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>product_offer_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tbd_users_offer_products.product_offer_ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>quantity</code></td><td><code>int unsigned NOT NULL DEFAULT &#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tbd_order_items</b> — 8 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>seller_order_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_seller_orders.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>product_offer_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tbd_users_offer_products.product_offer_ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>product_name</code></td><td><code>varchar(250) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>quantity</code></td><td><code>int unsigned NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>unit_price</code></td><td><code>decimal(12,2) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>subtotal</code></td><td><code>decimal(14,2) GENERATED ALWAYS AS ((`quantity` * `unit_price`)) STORED</code></td><td>—</td><td>Sí</td><td><code>—</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+</table></details>
+<details><summary><b>tbd_orders</b> — 9 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>key</code></td><td><code>varchar(40) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>total_products</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>total_cost</code></td><td><code>decimal(10,3) NOT NULL DEFAULT &#x27;0.000&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0.000&#x27;</code></td></tr>
+<tr><td><code>status_string</code></td><td><code>enum(&#x27;Registered&#x27;,&#x27;Attend&#x27;,&#x27;Canceled&#x27;,&#x27;Whistlist&#x27;,&#x27;Payed&#x27;,&#x27;Delivered&#x27;,&#x27;Devolved&#x27;,&#x27;Sended&#x27;) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>User_ID</code></td><td><code>varchar(45) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tbd_products_categories</b> — 5 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>category_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>PK; FK tbc_categories.ID</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>product_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_products.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+</table></details>
+<details><summary><b>tbd_return_items</b> — 5 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>id</code></td><td><code>int NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>return_id</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>order_item_id</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>quantity</code></td><td><code>int NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>condition_notes</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>—</code></td></tr>
+</table></details>
+<details><summary><b>tbd_user_payment_methods</b> — 11 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>ID</code></td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>user_ID</code></td><td><code>int NOT NULL</code></td><td>FK tb_users.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>payment_method_type_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tbc_payment_methods_types.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>provider</code></td><td><code>varchar(60) NOT NULL</code></td><td>INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>provider_method_ref</code></td><td><code>varchar(255) NOT NULL</code></td><td>—</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>label</code></td><td><code>varchar(100) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>last_four</code></td><td><code>char(4) DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>is_default</code></td><td><code>tinyint(1) NOT NULL DEFAULT &#x27;0&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;0&#x27;</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tbd_users_offer_products</b> — 8 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>product_offer_ID</code></td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td><td>PK</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>user_ID</code></td><td><code>int unsigned DEFAULT NULL</code></td><td>INDEX</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>product_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_products.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>available_stock</code></td><td><code>int NOT NULL DEFAULT &#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>&#x27;1&#x27;</code></td></tr>
+<tr><td><code>status</code></td><td><code>bit(1) NOT NULL DEFAULT b&#x27;1&#x27;</code></td><td>—</td><td>No</td><td><code>b&#x27;1&#x27;</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+<tr><td><code>available_date</code></td><td><code>datetime DEFAULT NULL</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+<tr><td><code>last_update</code></td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td><td>—</td><td>Sí</td><td><code>NULL</code></td></tr>
+</table></details>
+<details><summary><b>tbd_wishlist_products</b> — 3 campos</summary><table><tr><th>Campo</th><th>Definición SQL</th><th>Claves</th><th>NULL</th><th>DEFAULT</th></tr>
+<tr><td><code>user_ID</code></td><td><code>int NOT NULL</code></td><td>PK; FK tb_users.ID</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>product_ID</code></td><td><code>int unsigned NOT NULL</code></td><td>FK tb_products.ID; INDEX</td><td>No</td><td><code>—</code></td></tr>
+<tr><td><code>creation_date</code></td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td><td>—</td><td>No</td><td><code>CURRENT_TIMESTAMP</code></td></tr>
+</table></details>
+<script>let q=document.querySelector("#q");q.oninput=()=>document.querySelectorAll("details").forEach(d=>d.hidden=!d.innerText.toLowerCase().includes(q.value.toLowerCase()))</script></html>
