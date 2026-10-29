@@ -1,0 +1,6 @@
+_chrome_profile/
+_chrome_profile*/
+_edge_profile/
+_edge_profile*/
+*.log
+*.dat
