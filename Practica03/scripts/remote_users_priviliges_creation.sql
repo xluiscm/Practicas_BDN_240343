@@ -87,21 +87,44 @@ GRANT EXECUTE ON PROCEDURE db_test.sp_soft_delete_user TO 'support';
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_products TO 'seller';
 GRANT SELECT, INSERT, UPDATE ON db_test.tbc_categories TO 'seller';
 GRANT SELECT, INSERT, UPDATE ON db_test.tbd_products_categories TO 'seller';
-GRANT SELECT, INSERT, UPDATE ON db_test.tbd_users_offer_products TO 'seller';
+GRANT SELECT, INSERT, UPDATE ON db_test.tbd_products_users_providers TO 'seller';
 GRANT SELECT, UPDATE ON db_test.tb_seller_orders TO 'seller';
 GRANT SELECT ON db_test.tbd_order_items TO 'seller';
+
+-- Segundo vendedor: carga controlada de usuarios mediante usuarios.csv.
+-- El procedimiento valida las 10,000 filas y crea tb_users + tb_people.
+GRANT CREATE TEMPORARY TABLES ON db_test.* TO 'jonhy.neri'@'%';
+GRANT EXECUTE ON PROCEDURE db_test.sp_import_users_csv TO 'jonhy.neri'@'%';
 
 -- ---------------------------------------------------------------------
 -- BUYER
 -- ---------------------------------------------------------------------
-GRANT SELECT, INSERT, UPDATE ON db_test.tb_carts TO 'buyer';
-GRANT SELECT, INSERT, UPDATE, DELETE ON db_test.tbd_cart_items TO 'buyer';
-GRANT SELECT, INSERT, UPDATE ON db_test.tb_buyer_orders TO 'buyer';
-GRANT SELECT, INSERT, UPDATE ON db_test.tb_seller_orders TO 'buyer';
-GRANT SELECT, INSERT ON db_test.tbd_order_items TO 'buyer';
-GRANT SELECT, INSERT, DELETE ON db_test.tbd_wishlist_products TO 'buyer';
-GRANT SELECT, INSERT ON db_test.tb_payments TO 'buyer';
-GRANT SELECT, INSERT ON db_test.tb_payment_transactions TO 'buyer';
+-- La compra se opera mediante procedimientos DEFINER, nunca con DML directo.
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_cart TO 'buyer';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_add_cart_item TO 'buyer';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_address TO 'buyer';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_card_method TO 'buyer';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_order_from_cart TO 'buyer';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_process_payment TO 'buyer';
+GRANT SELECT ON db_test.vw_pr04_catalogo_disponible TO 'buyer';
+GRANT SELECT ON db_test.vw_pr04_my_cart TO 'buyer';
+GRANT SELECT ON db_test.vw_pr04_my_addresses TO 'buyer';
+GRANT SELECT ON db_test.vw_pr04_my_payment_methods TO 'buyer';
+GRANT SELECT ON db_test.vw_pr04_order_status TO 'buyer';
+
+-- Las cuentas personales comienzan sin compras autorizadas, pero pueden
+-- consultar catalogo y ejecutar el flujo controlado por procedimientos.
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_cart TO 'user_not_registered';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_add_cart_item TO 'user_not_registered';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_address TO 'user_not_registered';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_card_method TO 'user_not_registered';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_order_from_cart TO 'user_not_registered';
+GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_process_payment TO 'user_not_registered';
+GRANT SELECT ON db_test.vw_pr04_catalogo_disponible TO 'user_not_registered';
+GRANT SELECT ON db_test.vw_pr04_my_cart TO 'user_not_registered';
+GRANT SELECT ON db_test.vw_pr04_my_addresses TO 'user_not_registered';
+GRANT SELECT ON db_test.vw_pr04_my_payment_methods TO 'user_not_registered';
+GRANT SELECT ON db_test.vw_pr04_order_status TO 'user_not_registered';
 
 -- ---------------------------------------------------------------------
 -- COMMON (registro + lectura del catálogo)
@@ -112,7 +135,7 @@ GRANT INSERT ON db_test.tb_users   TO 'common';
 GRANT SELECT ON db_test.tb_products              TO 'common';
 GRANT SELECT ON db_test.tbc_categories           TO 'common';
 GRANT SELECT ON db_test.tbd_products_categories  TO 'common';
-GRANT SELECT ON db_test.tbd_users_offer_products TO 'common';
+GRANT SELECT ON db_test.tbd_products_users_providers TO 'common';
 
 -- ---------------------------------------------------------------------
 -- USER_NOT_REGISTERED (registro de nuevos usuarios)
