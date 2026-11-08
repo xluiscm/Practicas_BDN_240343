@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "db_test_corregida · mapa del esquema",
+    "subtitle": "Vista general por áreas; el diccionario interactivo conserva el detalle de tablas y columnas.",
+    "locale": "es",
+    "output": ".archify/db-test-corregida-resumen-20261108/diccionario-esquema.html",
+    "quality_profile": "standard",
+    "views": [
+      {
+        "id": "usuarios",
+        "label": "Usuarios y direcciones",
+        "focus": [
+          "usuarios"
+        ],
+        "note": "6 tablas, 54 campos. Incluye tb_users, tb_people, tb_user_addresses y más."
+      },
+      {
+        "id": "catalogo",
+        "label": "Catálogo y ofertas",
+        "focus": [
+          "catalogo"
+        ],
+        "note": "4 tablas, 29 campos. Incluye tb_products, tbc_categories, tbd_products_categories y más."
+      },
+      {
+        "id": "compras",
+        "label": "Carritos y pedidos",
+        "focus": [
+          "compras"
+        ],
+        "note": "7 tablas, 55 campos. Incluye tb_carts, tbd_cart_items, tb_buyer_orders y más."
+      },
+      {
+        "id": "pagos",
+        "label": "Pagos",
+        "focus": [
+          "pagos"
+        ],
+        "note": "5 tablas y 40 campos relacionados con los pagos."
+      },
+      {
+        "id": "operacion-final",
+        "label": "Devoluciones y auditoría",
+        "focus": [
+          "devoluciones",
+          "auditoria"
+        ],
+        "note": "Cancelaciones, devoluciones, reembolsos y registros de auditoría."
+      }
+    ]
+  },
+  "layout": {
+    "mode": "grid",
+    "cols": 3,
+    "gapX": 70,
+    "gapY": 120
+  },
+  "components": [
+    {
+      "id": "usuarios",
+      "type": "database",
+      "icon": "database",
+      "label": "Usuarios y direcciones",
+      "sublabel": "6 tablas · 54 campos · 5 relaciones FK",
+      "pos": [
+        70,
+        105
+      ],
+      "size": [
+        310,
+        110
+      ]
+    },
+    {
+      "id": "catalogo",
+      "type": "database",
+      "icon": "database",
+      "label": "Catálogo y ofertas",
+      "sublabel": "4 tablas · 29 campos · 4 relaciones FK",
+      "pos": [
+        450,
+        105
+      ],
+      "size": [
+        310,
+        110
+      ]
+    },
+    {
+      "id": "compras",
+      "type": "database",
+      "icon": "database",
+      "label": "Carritos y pedidos",
+      "sublabel": "7 tablas · 55 campos · 9 relaciones FK",
+      "pos": [
+        830,
+        105
+      ],
+      "size": [
+        310,
+        110
+      ]
+    },
+    {
+      "id": "pagos",
+      "type": "database",
+      "icon": "database",
+      "label": "Pagos",
+      "sublabel": "5 tablas · 40 campos · 4 relaciones FK",
+      "pos": [
+        70,
+        390
+      ],
+      "size": [
+        310,
+        110
+      ]
+    },
+    {
+      "id": "devoluciones",
+      "type": "database",
+      "icon": "database",
+      "label": "Cancelaciones y devoluciones",
+      "sublabel": "5 tablas · 47 campos · 8 relaciones FK",
+      "pos": [
+        450,
+        390
+      ],
+      "size": [
+        310,
+        110
+      ]
+    },
+    {
+      "id": "auditoria",
+      "type": "database",
+      "icon": "database",
+      "label": "Auditoría",
+      "sublabel": "1 tablas · 9 campos · 0 relaciones FK",
+      "pos": [
+        830,
+        390
+      ],
+      "size": [
+        310,
+        110
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "fk-1",
+      "from": "compras",
+      "to": "usuarios",
+      "label": "3 FK",
+      "route": "auto"
+    },
+    {
+      "id": "fk-2",
+      "from": "devoluciones",
+      "to": "compras",
+      "label": "3 FK",
+      "route": "auto"
+    },
+    {
+      "id": "fk-3",
+      "from": "devoluciones",
+      "to": "usuarios",
+      "label": "2 FK",
+      "route": "auto"
+    },
+    {
+      "id": "fk-4",
+      "from": "pagos",
+      "to": "compras",
+      "label": "1 FK",
+      "route": "auto"
+    },
+    {
+      "id": "fk-5",
+      "from": "devoluciones",
+      "to": "pagos",
+      "label": "1 FK",
+      "route": "auto"
+    },
+    {
+      "id": "fk-6",
+      "from": "compras",
+      "to": "catalogo",
+      "label": "2 FK",
+      "route": "auto"
+    },
+    {
+      "id": "fk-7",
+      "from": "pagos",
+      "to": "usuarios",
+      "label": "1 FK",
+      "route": "auto"
+    },
+    {
+      "id": "fk-8",
+      "from": "usuarios",
+      "to": "catalogo",
+      "label": "1 FK",
+      "route": "auto"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Alcance del mapa",
+      "items": [
+        "27 tablas y 223 campos del respaldo db_test_corregida.",
+        "30 relaciones FK reconocidas; las líneas agrupan las relaciones entre áreas.",
+        "El explorador del diccionario contiene el detalle por tabla, campo, tipo y conteo de registros."
+      ]
+    }
+  ]
+}
