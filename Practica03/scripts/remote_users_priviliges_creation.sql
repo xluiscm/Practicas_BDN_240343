@@ -52,96 +52,74 @@ GRANT ALL PRIVILEGES ON *.* TO 'superadmin' WITH GRANT OPTION;
 -- ---------------------------------------------------------------------
 -- ADMIN
 -- ---------------------------------------------------------------------
-GRANT ALL PRIVILEGES ON db_test.* TO 'admin';
+GRANT ALL PRIVILEGES ON db_test_corregida.* TO 'admin';
 
 -- ---------------------------------------------------------------------
 -- SUPPORT
 -- ---------------------------------------------------------------------
 -- Puede visualizar todas las tablas y vistas
-GRANT SELECT ON db_test.* TO 'support';
+GRANT SELECT ON db_test_corregida.* TO 'support';
 
 -- Puede insertar y actualizar usuarios
-GRANT SELECT, INSERT, UPDATE ON db_test.tb_users TO 'support';
+GRANT SELECT, INSERT, UPDATE ON db_test_corregida.tb_users TO 'support';
 
 -- Puede insertar y actualizar categorías
-GRANT SELECT, INSERT, UPDATE ON db_test.tbc_categories TO 'support';
+GRANT SELECT, INSERT, UPDATE ON db_test_corregida.tbc_categories TO 'support';
 
 -- Puede actualizar productos
-GRANT SELECT, UPDATE ON db_test.tb_products TO 'support';
+GRANT SELECT, UPDATE ON db_test_corregida.tb_products TO 'support';
 
 -- Puede insertar y actualizar relaciones producto-categoría
-GRANT SELECT, INSERT, UPDATE ON db_test.tbd_products_categories TO 'support';
+GRANT SELECT, INSERT, UPDATE ON db_test_corregida.tbd_products_categories TO 'support';
 
 -- Puede consultar los logs para auditoría
-GRANT SELECT ON db_test.tb_logs TO 'support';
+GRANT SELECT ON db_test_corregida.tb_logs TO 'support';
 
 -- Puede consultar los roles para auditoría (lo usan las vistas de trazabilidad)
 GRANT SELECT ON mysql.role_edges TO 'support';
 
 -- Puede ejecutar el borrado lógico de usuarios
-GRANT EXECUTE ON PROCEDURE db_test.sp_soft_delete_user TO 'support';
+GRANT EXECUTE ON PROCEDURE db_test_corregida.sp_soft_delete_user TO 'support';
 
 -- ---------------------------------------------------------------------
 -- SELLER
 -- ---------------------------------------------------------------------
-GRANT SELECT, INSERT, UPDATE ON db_test.tb_products TO 'seller';
-GRANT SELECT, INSERT, UPDATE ON db_test.tbc_categories TO 'seller';
-GRANT SELECT, INSERT, UPDATE ON db_test.tbd_products_categories TO 'seller';
-GRANT SELECT, INSERT, UPDATE ON db_test.tbd_products_users_providers TO 'seller';
-GRANT SELECT, UPDATE ON db_test.tb_seller_orders TO 'seller';
-GRANT SELECT ON db_test.tbd_order_items TO 'seller';
+GRANT SELECT, INSERT, UPDATE ON db_test_corregida.tb_products TO 'seller';
+GRANT SELECT, INSERT, UPDATE ON db_test_corregida.tbc_categories TO 'seller';
+GRANT SELECT, INSERT, UPDATE ON db_test_corregida.tbd_products_categories TO 'seller';
+GRANT SELECT, INSERT, UPDATE ON db_test_corregida.tbd_users_offer_products TO 'seller';
+GRANT SELECT, UPDATE ON db_test_corregida.tb_seller_orders TO 'seller';
+GRANT SELECT ON db_test_corregida.tbd_order_items TO 'seller';
 
--- Segundo vendedor: carga controlada de usuarios mediante usuarios.csv.
--- El procedimiento valida las 10,000 filas y crea tb_users + tb_people.
-GRANT CREATE TEMPORARY TABLES ON db_test.* TO 'jonhy.neri'@'%';
-GRANT EXECUTE ON PROCEDURE db_test.sp_import_users_csv TO 'jonhy.neri'@'%';
+-- La carga CSV y sus privilegios se configuran por separado:
+-- ejecutar configurar_importacion_usuarios_csv.sql y después
+-- autorizar_carga_csv_segundo_vendedor.sql, ambos contra db_test_corregida.
 
 -- ---------------------------------------------------------------------
 -- BUYER
 -- ---------------------------------------------------------------------
--- La compra se opera mediante procedimientos DEFINER, nunca con DML directo.
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_cart TO 'buyer';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_add_cart_item TO 'buyer';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_address TO 'buyer';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_card_method TO 'buyer';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_order_from_cart TO 'buyer';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_process_payment TO 'buyer';
-GRANT SELECT ON db_test.vw_pr04_catalogo_disponible TO 'buyer';
-GRANT SELECT ON db_test.vw_pr04_my_cart TO 'buyer';
-GRANT SELECT ON db_test.vw_pr04_my_addresses TO 'buyer';
-GRANT SELECT ON db_test.vw_pr04_my_payment_methods TO 'buyer';
-GRANT SELECT ON db_test.vw_pr04_order_status TO 'buyer';
+-- Los GRANT de Práctica 04 se omiten: sus procedimientos/vistas no existen
+-- en db_test_corregida del respaldo 081126.sql. La migración disponible está
+-- diseñada para db_test y requiere adaptación antes de instalarse aquí.
 
--- Las cuentas personales comienzan sin compras autorizadas, pero pueden
--- consultar catalogo y ejecutar el flujo controlado por procedimientos.
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_cart TO 'user_not_registered';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_add_cart_item TO 'user_not_registered';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_address TO 'user_not_registered';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_register_card_method TO 'user_not_registered';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_create_order_from_cart TO 'user_not_registered';
-GRANT EXECUTE ON PROCEDURE db_test.sp_pr04_process_payment TO 'user_not_registered';
-GRANT SELECT ON db_test.vw_pr04_catalogo_disponible TO 'user_not_registered';
-GRANT SELECT ON db_test.vw_pr04_my_cart TO 'user_not_registered';
-GRANT SELECT ON db_test.vw_pr04_my_addresses TO 'user_not_registered';
-GRANT SELECT ON db_test.vw_pr04_my_payment_methods TO 'user_not_registered';
-GRANT SELECT ON db_test.vw_pr04_order_status TO 'user_not_registered';
+-- Estos permisos también se habilitan después de migrar Práctica 04.
 
 -- ---------------------------------------------------------------------
 -- COMMON (registro + lectura del catálogo)
 -- ---------------------------------------------------------------------
-GRANT INSERT ON db_test.tb_people  TO 'common';
-GRANT INSERT ON db_test.tb_users   TO 'common';
+GRANT INSERT ON db_test_corregida.tb_people  TO 'common';
+GRANT INSERT ON db_test_corregida.tb_users   TO 'common';
 
-GRANT SELECT ON db_test.tb_products              TO 'common';
-GRANT SELECT ON db_test.tbc_categories           TO 'common';
-GRANT SELECT ON db_test.tbd_products_categories  TO 'common';
-GRANT SELECT ON db_test.tbd_products_users_providers TO 'common';
+GRANT SELECT ON db_test_corregida.tb_products              TO 'common';
+GRANT SELECT ON db_test_corregida.tbc_categories           TO 'common';
+GRANT SELECT ON db_test_corregida.tbd_products_categories  TO 'common';
+GRANT SELECT ON db_test_corregida.tbd_users_offer_products TO 'common';
 
 -- ---------------------------------------------------------------------
 -- USER_NOT_REGISTERED (registro de nuevos usuarios)
 -- ---------------------------------------------------------------------
-GRANT INSERT ON db_test.tb_people TO 'user_not_registered';
-GRANT INSERT ON db_test.tb_users  TO 'user_not_registered';
+GRANT INSERT ON db_test_corregida.tb_people TO 'user_not_registered';
+GRANT INSERT ON db_test_corregida.tb_users  TO 'user_not_registered';
 
 
 -- 4. ASIGNACION DE ROLES A LOS USUARIOS

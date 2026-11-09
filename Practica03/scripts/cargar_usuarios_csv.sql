@@ -1,6 +1,6 @@
 -- Ejecutar conectado a MySQL como jonhy.neri.
 -- Requiere LOCAL INFILE habilitado en Workbench/cliente.
-USE `db_test`;
+USE `db_test_corregida`;
 SET NAMES utf8mb4;
 
 DROP TEMPORARY TABLE IF EXISTS `tmp_users_csv`;
@@ -21,10 +21,10 @@ IGNORE 1 ROWS
 (`email`, `nick`, `password`, `status`);
 
 SELECT COUNT(*) AS filas_leidas FROM `tmp_users_csv`;
-CALL `db_test`.`sp_import_users_csv`();
+CALL `db_test_corregida`.`sp_import_users_csv`();
 DROP TEMPORARY TABLE `tmp_users_csv`;
 
-SELECT COUNT(*) AS total_usuarios FROM `db_test`.`tb_users`;
+SELECT COUNT(*) AS total_usuarios FROM `db_test_corregida`.`tb_users`;
 SELECT COUNT(*) AS usuarios_con_persona
-  FROM `db_test`.`tb_users` u
-  JOIN `db_test`.`tb_people` p ON p.user_ID = u.ID;
+  FROM `db_test_corregida`.`tb_users` u
+  JOIN `db_test_corregida`.`tb_people` p ON p.user_ID = u.ID;
