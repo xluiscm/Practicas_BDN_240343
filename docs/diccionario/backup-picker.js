@@ -67,6 +67,18 @@
     return { count, next: i + 1 };
   }
 
+  function countObjects(source, type) {
+    const normalized = source
+      .replace(/\/\*!\d+\s*([\s\S]*?)\*\//g, '$1')
+      .replace(/\bDEFINER\s*=\s*(?:`[^`]*`|'[^']*'|[^\s@]+)@(?:`[^`]*`|'[^']*'|[^\s]+)\s*/gi, '');
+    const patterns = {
+      VIEW: /\bCREATE\s+(?:(?:OR\s+REPLACE)\s+)?(?:ALGORITHM\s*=\s*\w+\s+)?(?:SQL\s+SECURITY\s+\w+\s+)?VIEW\s+`([^`]+)`/gi,
+      TRIGGER: /\bCREATE\s+TRIGGER\s+`([^`]+)`/gi,
+      PROCEDURE: /\bCREATE\s+PROCEDURE\s+`([^`]+)`/gi
+    };
+    return new Set([...normalized.matchAll(patterns[type])].map(match => match[1].toLowerCase())).size;
+  }
+
   function parseDump(sql) {
     const byName = new Map();
     const ddl = /CREATE TABLE\s+`([^`]+)`\s*\(([\s\S]*?)\)\s*ENGINE\s*=/g;
@@ -128,7 +140,15 @@
         if (field) field.fk = fk.to + '.' + fk.toCols[i];
       });
     }
-    return { database: (sql.match(/^USE\s+`([^`]+)`/im) || [,'desconocida'])[1], tables: all };
+    return {
+      database: (sql.match(/^USE\s+`([^`]+)`/im) || [,'desconocida'])[1],
+      tables: all,
+      objects: {
+        views: countObjects(sql, 'VIEW'),
+        triggers: countObjects(sql, 'TRIGGER'),
+        procedures: countObjects(sql, 'PROCEDURE')
+      }
+    };
   }
 
   function renderList(query = '') {
@@ -227,12 +247,17 @@
       const rowCount = tables.reduce((n, t) => n + t.rows, 0);
       const fieldCount = tables.reduce((n, t) => n + t.fields.length, 0);
       const fkCount = tables.reduce((n, t) => n + t.fks.length, 0);
-      document.querySelector('#backupDatabase').textContent = 'Respaldo analizado';
+      document.querySelector('#backupDatabase').textContent = 'Base de datos: ' + parsed.database;
       document.querySelector('#backupFileName').textContent = file.name;
       document.querySelector('#backupStatTables').textContent = tables.length.toLocaleString('es-MX');
       document.querySelector('#backupStatFields').textContent = fieldCount.toLocaleString('es-MX');
       document.querySelector('#backupStatRows').textContent = rowCount.toLocaleString('es-MX');
+      document.querySelector('#backupStatUsers').textContent = (tables.find(t => t.name.toLowerCase() === 'tb_users')?.rows || 0).toLocaleString('es-MX');
+      document.querySelector('#backupStatProducts').textContent = (tables.find(t => t.name.toLowerCase() === 'tb_products')?.rows || 0).toLocaleString('es-MX');
       document.querySelector('#backupStatFks').textContent = fkCount.toLocaleString('es-MX');
+      document.querySelector('#backupStatViews').textContent = parsed.objects.views.toLocaleString('es-MX');
+      document.querySelector('#backupStatTriggers').textContent = parsed.objects.triggers.toLocaleString('es-MX');
+      document.querySelector('#backupStatProcedures').textContent = parsed.objects.procedures.toLocaleString('es-MX');
       document.querySelector('#backupTableCount').textContent = tables.length.toLocaleString('es-MX');
       renderList(document.querySelector('#backupSearch').value);
       renderDiagram();

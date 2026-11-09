@@ -8,4 +8,4 @@
 
 Los respaldos anteriores se organizaron en `historicos/` y se conservan sin eliminarse. Incluyen `db_test_corregida_final.sql`, `07112026.sql`, `081126.sql` y las versiones `respaldo_08.sql` y `respaldo_09.sql`, además de exportaciones previas.
 
-El selector dentro del diccionario puede abrir respaldos de ambas carpetas. Los conteos que muestra se calculan de las instrucciones `INSERT` del archivo elegido y no representan necesariamente el estado vivo de MySQL.
+El selector dentro del diccionario puede abrir respaldos de ambas carpetas. Al elegir un archivo, el encabezado calcula las tablas, campos, relaciones, vistas, triggers, procedimientos y filas exportadas; también muestra las filas de `tb_users` y `tb_products`. Los conteos se derivan del contenido SQL elegido y no representan necesariamente el estado vivo de MySQL.
