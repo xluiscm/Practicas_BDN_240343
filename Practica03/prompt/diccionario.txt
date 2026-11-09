@@ -1,133 +1,38 @@
-# PROMPT PARA CODEX: GENERACIÓN DE DICCIONARIO DE DATOS Y DOCUMENTACIÓN ARQUITECTÓNICA DE BASE DE DATOS
+﻿# Instrucciones para generar y revisar el diccionario de Práctica 03
 
-## 1. INSTRUCCIÓN DE ENTORNO Y REGLAS DE EJECUCIÓN
+## Objetivo
 
-Actúa como un **Arquitecto de Software Senior y DB Admin**. Tu objetivo es realizar una ingeniería inversa exhaustiva sobre el archivo de dump/schema SQL proporcionado y generar una documentación técnica integral en formato Markdown.
+Crear un diccionario de datos fiel al respaldo SQL de la base `db_test_corregida` y mantener el explorador HTML interactivo alineado con ese mismo respaldo.
 
-### Reglas de Ejecución para Codex:
-- **Inspección Previa:** Utiliza herramientas CLI (scripts de análisis, grep, parser de AST o scripts de Python) sobre el archivo fuente para extraer metadatos exactos (recuento real de tablas, columnas, FKs, triggers, procedimientos, vistas, etc.) antes de redactar el documento final.
-- **Sin Alucinaciones:** Limítate estrictamente a lo que se encuentra o deduce técnicamente del archivo SQL. Diferencia siempre entre **[HECHO]** (comprobado en SQL), **[INFERENCIA]** (deducción lógica) e **[HIPÓTESIS]** (pendiente de validación).
-- **Entregable en Archivo:** No imprimas la documentación completa en la consola. Escribe la salida directamente en un archivo estructurado en disco: `docs/DOCUMENTACION_DB_TEST.md` (o divídelo en carpetas por módulos si excede el tamaño razonable de un solo archivo Markdown).
+## Fuente y ejecución
 
----
+Trabaja desde la raíz del repositorio. Usa como fuente el respaldo indicado como argumento; si no se indica uno, elige el archivo `.sql` más recientemente modificado en `Practica03/backups/`.
 
-## 2. ORIGEN DE DATOS Y ALCANCE
+```powershell
+node Practica03/scripts/generar_diccionario_interactivo.js
+node Practica03/scripts/generar_diccionario_interactivo.js Practica03/backups/respaldo_10.sql
+```
 
-- **Archivo Fuente:** `El ultimo que hicimos, revisa el historial` (Verifica en el directorio actual o especifica la ruta exacta del dump).
-- **Base de Datos Objetivo:** `db_test` (Motor MySQL / MariaDB).
+El generador debe obtener tablas, columnas, definiciones SQL, claves primarias, índices, claves foráneas y reglas `ON DELETE`/`ON UPDATE` del DDL. Debe contar las filas presentes en las sentencias `INSERT` sin confundir paréntesis dentro de valores de texto. No debe usar un CSV anterior como fuente del esquema.
 
-Analiza el archivo completo: `CREATE TABLE`, tipos de datos, `PRIMARY KEY`, `FOREIGN KEY`, índices, `DEFAULT`, inserciones `INSERT INTO`, `CREATE VIEW`, `TRIGGER`, `PROCEDURE`, `FUNCTION`, `EVENT` y comentarios.
+## Archivos de salida
 
----
+- `Practica03/diccionario/campos.csv`: índice tabular regenerado a partir del DDL seleccionado.
+- `Practica03/diccionario/diccionario.html`: explorador inicial basado en el mismo dump.
+- `Practica03/diccionario/backup-picker.js`: código que permite seleccionar otro `.sql` desde el navegador, analizarlo localmente y actualizar conteos, diagrama, tablas y relaciones.
+- `Practica03/docs/DOCUMENTACION_DB_TEST.md` y `Practica03/docs/diccionario/`: documentación técnica mantenida para el respaldo de referencia. Si cambia la fuente de referencia, vuelve a inspeccionar y actualizar estas fichas; no presentes inferencias funcionales como hechos confirmados por el DDL.
 
-## 3. ESTRUCTURA REQUERIDA PARA LA DOCUMENTACIÓN
+## Requisitos del diccionario interactivo
 
-Genera el documento en `docs/DOCUMENTACION_DB_TEST.md` respetando estrictamente la siguiente estructura de 27 apartados:
+El HTML debe mostrar el nombre de la base, conteos de tablas, campos, claves foráneas y filas `INSERT`, un diagrama ER navegable, búsqueda y filtro por módulos, listado de tablas y el detalle de columnas con tipo SQL, PK/FK, nulabilidad, valor por defecto e índices. Al seleccionar una entidad se debe abrir su detalle y hacer visible el panel de campos y relaciones.
 
-### 1. Portada Técnica y Metadatos de Generación
-- Nombre del Proyecto / BD (`db_test`).
-- Archivo analizado, versión de MySQL detectada, fecha de análisis.
+El selector de respaldo debe aceptar archivos `.sql` locales, reconstruir el diagrama y los detalles desde el archivo escogido y reportar errores de lectura de forma comprensible. El procesamiento del archivo seleccionado ocurre en el navegador; no se debe cargar a un servidor.
 
-### 2. Resumen Ejecutivo
-- Visión general del modelo, propósito principal identificable y estado general del esquema.
+## Reglas de precisión
 
-### 3. Introducción
-- Contexto de la base de datos dentro del ecosistema de software al que pertenece.
-
-### 4. Objetivo y Alcance
-- Propósito de este documento y alcance técnico del análisis sobre el script SQL.
-
-### 5. Metodología de Análisis
-- Explicación del proceso de ingeniería inversa aplicado mediante las herramientas de Codex.
-
-### 6. Naturaleza de la Base de Datos
-Desarrolla con profundidad las 8 dimensiones:
-- **6.1 Naturaleza funcional** (Dominio de negocio respaldado: usuarios, carritos, pagos, etc.).
-- **6.2 Naturaleza de la información** (Clasificación en datos maestros, transaccionales, catálogos, auditoría, etc.).
-- **6.3 Naturaleza estructural** (Modelo relacional, distribución de entidades, acoplamiento, pros y contras).
-- **6.4 Naturaleza operativa** (CRUD, flujos de compra/venta, procesamiento de eventos).
-- **6.5 Naturaleza histórica y trazabilidad** (Mantenimiento de logs, campos `created_at`/`updated_at`, triggers de auditoría).
-- **6.6 Naturaleza de seguridad y privacidad** (Datos sensibles PII, contraseñas, hashes, riesgos deducibles).
-- **6.7 Naturaleza de integridad** (Uso de PK, FK, NOT NULL, CHECK, UNIQUE y DEFAULTs).
-- **6.8 Limitaciones de la caracterización** (Lo que no se puede saber sin el código fuente de la app).
-
-### 7. Caracterización Funcional y Técnica (Ficha Técnica del Sistema)
-- Ficha técnica resumen con entidades principales, secundarias, actores inferidos y supuestos con nivel de certeza.
-
-### 8. Inventario de Objetos del Sistema
-- Inventarios tabulares independientes para: Tablas, Vistas, Triggers, Procedimientos Almacenados, Funciones y Eventos.
-- Para cada tabla: Nombre exacto, descripción funcional, módulo, relaciones entrantes/salientes, recuento de columnas, claves foráneas e impacto de borrado/modificación.
-
-### 9. Diccionario de Datos Exhaustivo
-*(Crea una sección de tabla Markdown detallada por cada tabla de la base de datos)*
-Para **cada columna** de **cada tabla**, documenta los 22 atributos requeridos:
-1. Base de Datos | 2. Tabla | 3. Columna | 4. Tipo Dato SQL completo | 5. Longitud/Precisión | 6. Permite NULL | 7. Es PK | 8. Es FK | 9. Tabla/Columna Referenciada | 10. Default | 11. Auto Increment | 12. Índices | 13. Restricciones | 14. Descripción Funcional | 15. Significado Semántico | 16. Naturaleza del Dato | 17. Uso en Negocio | 18. Dependencias | 19. Reglas de Validación | 20. Ejemplo Representativo | 21. Riesgos de Integridad | 22. Origen (Explícito/Inferido).
-
-### 10. Relaciones y Modelo Entidad-Relación
-- Matriz completa de relaciones (Origen, Atributo Origen, Destino, Atributo Destino, FK, Cardinalidad, ON DELETE, ON UPDATE).
-- **Diagrama Mermaid ERD** completo (o desglosado por sub-diagramas por módulo si es muy extenso).
-
-### 11. Módulos Funcionales
-- Agrupación lógica de tablas por dominios (ej. *Usuarios*, *Productos/Inventario*, *Ventas/Pedidos*, *Auditoría*).
-- Objetivo, tablas implicadas, operaciones, reglas de integridad y dependencias críticas de cada módulo.
-
-### 12. Reglas de Negocio y Validaciones
-- Listado de reglas explícitas (triggers, restricciones `CHECK`, `UNIQUE`, `FOREIGN KEY`) e implícitas.
-- Formato por regla: `ID_REGLA`, Descripción, Tabla/Campos, Tipo de Validación, Evidencia en SQL.
-
-### 13. Ciclo de Vida de los Datos
-- Diagramas de estado Mermaid para las entidades clave que tengan flujos definidos (ej. Estados de un Pedido, Estado de un Usuario).
-
-### 14. Auditoría y Trazabilidad
-- Análisis detallado de triggers de auditoría, tablas log, marcas de tiempo y campos de autoría.
-
-### 15. Seguridad, Privacidad y Control de Acceso
-- Clasificación de campos PII (Información de Identificación Personal), credenciales, métodos de hashing visibles, roles de BD y riesgos de exposición.
-
-### 16. Índices y Rendimiento
-- Análisis de performance: Claves primarias, secundarias, índices compuestos, índices ausentes recomendados y posibles redundancias.
-
-### 17. Dependencias e Impacto de Cambios
-- Matriz de acoplamiento: Vistas y triggers que dependen de cada tabla.
-- Diagrama Mermaid de dependencias entre tablas y objetos programables.
-
-### 18. Vistas y Objetos Programables
-- Documentación detallada de cada `VIEW`, `PROCEDURE`, `FUNCTION` y `EVENT` con sus parámetros, lógica interna y tablas afectadas.
-
-### 19. Normalización y Calidad del Modelo
-- Evaluación de Formas Normales (1FN, 2FN, 3FN). Identificación de desnormalizaciones deliberadas o fallos de diseño.
-
-### 20. Catálogos, Estados y Dominios
-- Detalle de columnas tipo `ENUM`, `TINYINT`, `VARCHAR` que actúan como banderas o catálogos de estado con su interpretación.
-
-### 21. Ejemplos de Datos
-- Muestras representativas extraídas de los `INSERT` del archivo SQL (enmascarando datos sensibles como passwords o correos reales).
-
-### 22. Diagramas Arquitectónicos (Mermaid)
-- ERD General, ERD por Módulo, Diagrama de Trazabilidad/Auditoría, Diagrama de Componentes SQL.
-
-### 23. Glosario Técnico y Funcional
-- Definición de abreviaturas, prefijos (`tbl_`, `vw_`, `trg_`), términos del dominio y acrónimos.
-
-### 24. Hallazgos y Recomendaciones
-- Oportunidades de mejora técnicas (índices faltantes, refactorización de tipos de datos, seguridad, integridad referencial).
-
-### 25. Matriz de Cobertura y Verificación
-- Tabla cuantificable con el 100% de los objetos extraídos del SQL vs los documentados:
-  - Total Tablas, Columnas, PKs, FKs, Índices, Vistas, Triggers, Procedimientos, Funciones, Eventos.
-  - Porcentaje de cobertura alcanzado.
-  - Lista de elementos pendientes o ambiguos.
-
-### 26. Conclusiones Técnicas
-- Dictamen general de la arquitectura de la base de datos.
-
-### 27. Anexos y Referencias SQL
-- Fragmentos relevantes del código SQL original para soporte de validaciones clave.
-
----
-
-## 4. CRITERIOS DE EJECUCIÓN PARA CODEX
-
-1. **Analizar primero con Scripts:** Antes de escribir el archivo Markdown, ejecuta un script auxiliar (en Python, Bash o Node.js) para obtener el conteo exacto de tablas, columnas, FKs y triggers de `211026.sql`.
-2. **Generar Archivo:** Escribe el contenido en `docs/DOCUMENTACION_DB_TEST.md`. Si el volumen de datos de la sección 9 (Diccionario de Datos) hace que el archivo sea demasiado pesado, crea una subcarpeta `docs/diccionario/` y genera un archivo `.md` por cada tabla, referenciándolos desde el documento principal.
-3. **Calidad Exhaustiva:** No resumas ni omitas tablas o columnas. Completa todos los campos solicitados para cada una de las tablas existentes.
+- Usa exclusivamente evidencia del respaldo para describir estructura, relaciones y conteos.
+- Distingue hechos del SQL de interpretaciones funcionales.
+- El conteo de filas corresponde a `INSERT` encontrados en el dump; no representa datos en vivo de una instancia.
+- No inventes vistas, rutinas, triggers, reglas de negocio ni cardinalidades que no aparezcan en la fuente.
+- Conserva los respaldos históricos y los CSV de la práctica; no los reemplaces al generar el diccionario.
+- Mantén los archivos en UTF-8 y los enlaces relativos válidos.

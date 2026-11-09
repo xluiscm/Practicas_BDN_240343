@@ -1,6 +1,6 @@
--- Ejecutar como root/admin en db_test después de restaurar el respaldo.
--- Después, jonhy.neri carga el CSV con cargar_usuarios_csv.sql.
-USE `db_test`;
+-- Ejecutar como root/admin en db_test_corregida después de restaurar el respaldo.
+-- Autoriza la importación de CSV a jonhy.neri y carlos.morales.
+USE `db_test_corregida`;
 
 DROP PROCEDURE IF EXISTS `sp_import_users_csv`;
 DELIMITER ;;
@@ -21,9 +21,9 @@ BEGIN
     END;
 
     SET v_caller = SUBSTRING_INDEX(USER(), '@', 1);
-    IF v_caller <> 'jonhy.neri' THEN
+    IF v_caller NOT IN ('jonhy.neri', 'carlos.morales') THEN
         SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Solo jonhy.neri puede importar usuarios desde CSV';
+            SET MESSAGE_TEXT = 'Solo jonhy.neri o carlos.morales pueden importar usuarios desde CSV';
     END IF;
 
     SELECT COUNT(*) INTO v_total FROM `tmp_users_csv`;
@@ -84,8 +84,8 @@ BEGIN
            IF(`status` = '1', b'1', b'0'), CURRENT_TIMESTAMP, NULL, NULL
       FROM `tmp_users_csv`;
 
-    INSERT INTO `tb_people` (`user_ID`, `given_names`, `gender`, `status`, `creation_date`, `last_update`)
-    SELECT u.ID, 'Pendiente de completar', 'Prefiero no decirlo',
+    INSERT INTO `tb_people` (`user_ID`, `given_names`, `gender_ID`, `status`, `creation_date`, `last_update`)
+    SELECT u.ID, 'Pendiente de completar', NULL,
            IF(s.`status` = '1', b'1', b'0'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
       FROM `tmp_users_csv` s
       JOIN `tb_users` u

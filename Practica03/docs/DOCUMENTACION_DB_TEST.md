@@ -1,6 +1,6 @@
 # Diccionario de datos — db_test_corregida
 
-**Fuente analizada:** `backups/db_test_corregida_final.sql` (dump declara `db_test_corregida`).
+**Fuente analizada:** `backups/historicos/db_test_corregida_final.sql` (dump declara `db_test_corregida`).
 
 Análisis directo del DDL: 27 tablas y 223 columnas. Las fichas cubren los 22 atributos pedidos por columna. Hechos, inferencias e hipótesis están identificados; el dump no permite confirmar el comportamiento de la aplicación.
 

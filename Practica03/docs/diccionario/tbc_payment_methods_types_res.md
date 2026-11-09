@@ -2,7 +2,7 @@
 
 **Base declarada en el dump:** `db_test_corregida`. **Columnas:** 4.
 
-Fuente estructural: `backups/db_test_corregida_final.sql`. [HECHO] El dump no define el significado funcional de cada campo; las interpretaciones se marcan como inferencia.
+Fuente estructural: `backups/historicos/db_test_corregida_final.sql`. [HECHO] El dump no define el significado funcional de cada campo; las interpretaciones se marcan como inferencia.
 
 ## `id`
 
