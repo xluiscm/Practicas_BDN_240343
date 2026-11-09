@@ -1,24 +1,32 @@
-# Bases de Datos en la Nube
+﻿# Prácticas: Bases de Datos en la Nube
 
-Repositorio de prácticas de bases de datos. Cada práctica mantiene sus respaldos, consultas, scripts y documentación en su propia carpeta.
+**Asignatura:** Optativa I: Bases de Datos en la Nube  
+**Programa:** Ingeniería en Tecnologías de la Información e Innovación Digital  
+**Docente:** M.T.I. Marco A. Ramírez Hernández  
+**Periodo:** septiembre–diciembre de 2026
 
-## Prácticas
+## Ponderación y estado
+
+| ID | Número de práctica | Nombre | Ponderación | Estado |
+|---:|---|---|---:|---|
+| 1 | Práctica 02 | Conexión remota en MySQL | 42 | Concluida |
+| 2 | Práctica 02 | Conexiones remotas para bases de datos SQL: usuarios y privilegios | 60 | Concluida |
+| 3 | Práctica 03 | Manipulación de datos en conexiones remotas | 100 | Concluida |
+
+*La tabla recupera las ponderaciones que aparecían en la versión anterior del README.*
+
+## Repositorio
+
+Cada práctica conserva sus respaldos, consultas, scripts y documentación en su propia carpeta.
 
 - [Práctica 02](Practica02/): respaldos, consultas, usuarios y privilegios.
-- [Práctica 03](Practica03/): esquema `db_test_corregida`, diccionario de datos, respaldos, consultas y carga de CSV. Consulta su [README](Practica03/README.md).
+- [Práctica 03](Practica03/): respaldos, diccionario de datos, consultas y carga de CSV. Consulta su [README](Practica03/README.md).
 - [Práctica 04](Practica04/): respaldo, migración y scripts de vinculación. Consulta su [README](Practica04/README.md).
 
-## Entrada rápida
+## Enlaces rápidos
 
 - [Diccionario interactivo de Práctica 03](Practica03/diccionario/diccionario.html)
 - [Mapa general de Archify](.archify/db-test-corregida-resumen-20261108/diccionario-esquema.html)
 - [Documentación técnica de Práctica 03](Practica03/docs/DOCUMENTACION_DB_TEST.md)
 
-## Carpetas de soporte
-
-- `.agents/`: instrucciones y herramientas locales del proyecto.
-- `.archify/`: diagramas y artefactos interactivos generados.
-- `.vscode/`: configuración del editor.
-- `skills-lock.json`: versiones de herramientas/skills del proyecto.
-
-Abre el README de cada práctica para conocer el respaldo recomendado y las instrucciones de uso de sus scripts.
+Abre el README de cada práctica para consultar sus objetivos, respaldos e instrucciones de uso.
