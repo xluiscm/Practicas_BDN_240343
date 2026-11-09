@@ -29,4 +29,8 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 - [Mapa general de Archify](.archify/db-test-corregida-resumen-20261108/diccionario-esquema.html)
 - [Documentación técnica de Práctica 03](Practica03/docs/DOCUMENTACION_DB_TEST.md)
 
+## Diccionario en GitHub Pages
+
+El sitio está preparado en `docs/`: el `index.html` abre el diccionario y solo se publican los archivos HTML y JavaScript necesarios, sin respaldos SQL ni CSV. En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`. Al regenerar el diccionario con el script de Práctica 03, se actualiza también esta copia de publicación.
+
 Abre el README de cada práctica para consultar sus objetivos, respaldos e instrucciones de uso.

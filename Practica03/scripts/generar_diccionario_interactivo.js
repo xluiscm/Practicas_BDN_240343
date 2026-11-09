@@ -10,6 +10,8 @@ const dumpPath = requestedDump ? path.resolve(process.cwd(), requestedDump) : fs
   .sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
 const csvPath = path.join(base, 'diccionario', 'campos.csv');
 const outPath = path.join(base, 'diccionario', 'diccionario.html');
+const pagesDir = path.resolve(base, '..', 'docs');
+const pagesDictionaryDir = path.join(pagesDir, 'diccionario');
 if (!dumpPath || !fs.existsSync(dumpPath)) throw new Error('No se encontró el respaldo SQL: ' + (requestedDump || backupsDir));
 const sql = fs.readFileSync(dumpPath, 'utf8');
 
@@ -225,7 +227,11 @@ const html = '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta n
 relationScript+'renderList();</script><script src="backup-picker.js"></script></body></html>';
 
 fs.writeFileSync(outPath, html.replace('</head>', '<style>'+stylePolish+'</style></head>'), 'utf8');
+fs.mkdirSync(pagesDictionaryDir, { recursive: true });
+fs.copyFileSync(outPath, path.join(pagesDictionaryDir, 'diccionario.html'));
+fs.copyFileSync(path.join(base, 'diccionario', 'backup-picker.js'), path.join(pagesDictionaryDir, 'backup-picker.js'));
 console.log('Generado: ' + outPath);
+console.log('Preparado para GitHub Pages: ' + pagesDir);
 console.log(JSON.stringify({
   database: db, tables: all.length, fields: fields.length,
   foreignKeys: all.reduce((n, t) => n + t.fks.length, 0),
