@@ -25,7 +25,7 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 
 ## Enlaces rápidos
 
-- [Diccionario interactivo de Práctica 03](Practica03/diccionario/diccionario.html)
+- [Diccionario interactivo de Práctica 03](https://xluiscm.github.io/Practicas_BDN_240343/diccionario/diccionario.html)
 - [Mapa general de Archify](.archify/db-test-corregida-resumen-20261108/diccionario-esquema.html)
 - [Documentación técnica de Práctica 03](Practica03/docs/DOCUMENTACION_DB_TEST.md)
 

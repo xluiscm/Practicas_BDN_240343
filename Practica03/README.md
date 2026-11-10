@@ -4,7 +4,7 @@ Esta práctica documenta y explora la base MySQL `db_test_corregida`. Incluye re
 
 ## Diccionario interactivo
 
-[Abrir el diccionario interactivo](diccionario/diccionario.html). Incluye:
+[Abrir el diccionario interactivo](https://xluiscm.github.io/Practicas_BDN_240343/diccionario/diccionario.html). Incluye:
 
 - Diagrama entidad-relación con tablas agrupadas por módulo y relaciones FK.
 - Búsqueda y filtros por módulo, tabla y campo.
