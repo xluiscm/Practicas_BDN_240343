@@ -1,0 +1,46 @@
+GUIA PASO A PASO: SIMULACION DE COMPRA EN MYSQL WORKBENCH
+========================================================
+
+1. Restaura el respaldo en una base de prueba.
+   Usa Practica04/backups/respaldo_10.sql y confirma que la base se llame
+   db_test_corregida. No uses la base de trabajo.
+
+2. Conectate como DBA a esa instancia.
+   Abre Practica04/scripts/caso_prueba_1/00_permisos_app.sql y ejecutalo
+   completo con el boton del rayo. Este script asigna roles y permisos a
+   app_web y app_movil. Las cuentas deben existir. Si la cuenta usa un host
+   distinto de '%', ajusta ese host en el script.
+
+3. En la misma conexion DBA, abre
+   Practica04/scripts/caso_prueba_1/01_preparar_catalogo.sql y ejecutalo
+   completo. Agrega las relaciones necesarias, prepara ofertas de productos
+   y crea los procedimientos auxiliares. Ejecutalo una sola vez por cada
+   restauracion limpia.
+
+4. Abre una conexion nueva en Workbench con app_web o app_movil. Verifica
+   la conexion ejecutando:
+
+      SELECT CURRENT_USER(), CURRENT_ROLE();
+
+5. Abre 02_ejecutar_caso.sql usando esa conexion de app_web o app_movil,
+   no la conexion DBA.
+
+6. Ejecuta el script completo con el boton del rayo y en una sola sesion.
+   El script cambia los roles en este orden: user_not_registered,
+   common_user y, despues de autorizar el pago, buyer. No ejecutes los
+   bloques en conexiones distintas porque las variables de sesion guardan
+   los identificadores creados durante la prueba.
+
+7. Revisa los resultados finales. Debes ver la orden como Delivered, el
+   pago como Paid, los eventos Authorized y Captured, y el envio asociado
+   al domicilio.
+
+NOTAS
+-----
+- Todo es ficticio: no se cobra una tarjeta ni se entrega un producto real.
+- Si aparece un error, detén el script y anota el primer error y la
+  instruccion que estabas ejecutando.
+- El numero de tarjeta usado en la prueba es simulado; solo se guarda un
+  token de prueba y los ultimos cuatro digitos.
+- El nuevo comprador de tb_users no es una cuenta MySQL. La aplicacion
+  debe autenticar al comprador y controlar los cambios de rol.
