@@ -2,20 +2,19 @@ GUIA PASO A PASO: SIMULACION DE COMPRA EN MYSQL WORKBENCH
 ========================================================
 
 1. Restaura el respaldo en una base de prueba.
-   Usa Practica04/backups/respaldo_10.sql y confirma que la base se llame
+   Usa Practica04/backups/respaldo_compra.sql y confirma que la base se llame
    db_test_corregida. No uses la base de trabajo.
 
-2. Conectate como DBA a esa instancia.
-   Abre Practica04/scripts/caso_prueba_1/00_permisos_app.sql y ejecutalo
-   completo con el boton del rayo. Este script asigna roles y permisos a
-   app_web y app_movil. Las cuentas deben existir. Si la cuenta usa un host
-   distinto de '%', ajusta ese host en el script.
-
-3. En la misma conexion DBA, abre
+2. Conectate como DBA a esa instancia. Abre
    Practica04/scripts/caso_prueba_1/01_preparar_catalogo.sql y ejecutalo
    completo. Agrega las relaciones necesarias, prepara ofertas de productos
    y crea los procedimientos auxiliares. Ejecutalo una sola vez por cada
    restauracion limpia.
+
+3. En la misma conexion DBA, ejecuta
+   Practica04/scripts/remote_users_priviliges_creation.sql. Es el unico
+   script de permisos. Crea las cuentas si faltan y configura roles y grants
+   para db_test_corregida; si las cuentas ya existen, conserva sus contrasenas.
 
 4. Abre una conexion nueva en Workbench con app_web o app_movil. Verifica
    la conexion ejecutando:

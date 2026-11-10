@@ -15,9 +15,9 @@ Los scripts de `scripts/caso_prueba_1` preparan y ejecutan un flujo de compra co
 
 ## Preparación
 
-1. Restaura `backups/respaldo_09112026.sql` en una instancia local de MySQL 8.0. No ejecutes la prueba sobre la base de trabajo.
-2. Como DBA, asegúrate de que existan las cuentas MySQL `app_web` y `app_movil`, y ejecuta `scripts/caso_prueba_1/00_permisos_app.sql`. El script crea los roles de la práctica y los asigna a ambas cuentas; no establece ni cambia sus contraseñas.
-3. Como DBA, ejecuta `scripts/caso_prueba_1/01_preparar_catalogo.sql`. Añade las relaciones entre pagos y métodos, y entre envíos y domicilios; registra el tipo ficticio de tarjeta, prepara ofertas e instala los procedimientos de atención y entrega. Se ejecuta una vez por restauración limpia.
+1. Restaura `backups/respaldo_compra.sql` en una instancia de prueba MySQL 9.5, la versión indicada en el export. No ejecutes la prueba sobre la base de trabajo.
+2. Como DBA, ejecuta `scripts/caso_prueba_1/01_preparar_catalogo.sql`. Añade las relaciones entre pagos y métodos, y entre envíos y domicilios; registra el tipo ficticio de tarjeta, prepara ofertas e instala los procedimientos de atención y entrega. Se ejecuta una vez por restauración limpia.
+3. Como DBA, ejecuta `scripts/remote_users_priviliges_creation.sql`. Es el único script de permisos: crea las cuentas solo si no existen, configura los roles de la práctica y otorga los permisos necesarios para la simulación.
 4. En Workbench, abre una conexión con `app_web` o `app_movil` y ejecuta `scripts/caso_prueba_1/02_ejecutar_caso.sql` completo en esa misma pestaña/conexión. El script activa `user_not_registered`, luego `common_user` y, tras autorizar el pago, `buyer`.
 5. Revisa los resultados finales: el estado de orden debe ser `Delivered`, el pago `Paid`, y deben aparecer eventos `Authorized` y `Captured`.
 
@@ -33,11 +33,9 @@ El nuevo comprador es un registro de `tb_users`, no una cuenta MySQL independien
 
 ## Archivos de la práctica
 
-- `backups/respaldo_09112026.sql`: exportación más reciente de `db_test_corregida`, con la sincronización de usuarios y personas.
+- `backups/respaldo_compra.sql`: exportación más reciente de `db_test_corregida`, con la sincronización de usuarios y personas.
 - `backups/respaldo_10.sql`: respaldo previo usado para preparar la simulación.
 - `scripts/caso_prueba_1/01_preparar_catalogo.sql`: cambios de esquema y catálogo de prueba.
-- `scripts/caso_prueba_1/00_permisos_app.sql`: roles y privilegios mínimos para las cuentas de aplicación existentes.
 - `scripts/caso_prueba_1/02_ejecutar_caso.sql`: recorrido completo de compra.
-- `scripts/caso_prueba_1/03_completar_personas_faltantes.sql`: procedimiento para crear las filas de `tb_people` faltantes para usuarios existentes.
-- `scripts/remote_users_priviliges_creation.sql`: script anterior de roles para `db_test`; no es necesario para este caso y no debe ejecutarse sin adaptar sus privilegios y base de datos.
+- `scripts/remote_users_priviliges_creation.sql`: creación de cuentas y permisos para los roles de `db_test_corregida` y la simulación.
 - `queries/consultas_de_verificacion.sql`: consultas heredadas de la práctica 03.
