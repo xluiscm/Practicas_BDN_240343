@@ -11,7 +11,7 @@
 |---:|---|---|---:|---|
 | 1 | Práctica 02 | Conexión remota en MySQL | 42 | Concluida |
 | 2 | Práctica 02 | Conexiones remotas para bases de datos SQL: usuarios y privilegios | 60 | Concluida |
-| 3 | Práctica 03 | Manipulación de datos en conexiones remotas | 100 | Concluida |
+| 3 | [Práctica 03](Practica03/README.md) | Manipulación de datos en conexiones remotas | 100 | Concluida |
 
 *La tabla recupera las ponderaciones que aparecían en la versión anterior del README.*
 
