@@ -1,41 +1,35 @@
-﻿# Prácticas: Bases de Datos en la Nube
+# Bases de Datos en la Nube
 
 **Asignatura:** Optativa I: Bases de Datos en la Nube  
 **Programa:** Ingeniería en Tecnologías de la Información e Innovación Digital  
 **Docente:** M.T.I. Marco A. Ramírez Hernández  
 **Periodo:** septiembre–diciembre de 2026
 
-## Ponderación y estado
+## Diccionario interactivo de Práctica 04
 
-| ID | Número de práctica | Nombre | Ponderación | Estado |
-|---:|---|---|---:|---|
-| 1 | Práctica 02 | Conexión remota en MySQL | 42 | Concluida |
-| 2 | Práctica 02 | Conexiones remotas para bases de datos SQL: usuarios y privilegios | 60 | Concluida |
-| 3 | [Práctica 03](Practica03/) | Manipulación de datos en conexiones remotas | 100 | Concluida |
-| 4 | [Práctica 04](Practica04/) | Simulación de compra, cancelaciones, reembolsos y entrega | — | Concluida |
+**[Abrir el diccionario de datos y diagrama ER](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html)**
 
-*La tabla recupera las ponderaciones que aparecían en la versión anterior del README.*
+El enlace abre directamente el explorador de la base `db_test_corregida`. La vista inicial muestra el diagrama ER navegable; usa **Tablas y campos** para consultar columnas, y **Seleccionar respaldo SQL** para cargar otro archivo `.sql`. El archivo seleccionado se analiza localmente en el navegador y no se envía a un servidor.
 
-## Repositorio
+El diccionario se genera desde `Practica04/backups/respaldo_5casostotalesfinal.sql` y documenta 27 tablas, 225 campos y 33 claves foráneas. Consulta también las [relaciones entre tablas](https://xluiscm.github.io/Practicas_BDN_240343/practica04/relaciones.html) y el [diagrama ERE](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diagrama_ere.html).
 
-Cada práctica conserva sus respaldos, consultas, scripts y documentación en su propia carpeta.
+## Prácticas
 
-- [Práctica 02](Practica02/): respaldos, consultas, usuarios y privilegios.
-- [Práctica 03](Practica03/): respaldos, diccionario de datos, consultas y carga de CSV. Consulta su [README](Practica03/README.md).
-- [Práctica 04](Practica04/): respaldo con evidencia de los cinco casos, scripts SQL, consultas de verificación, diccionario de datos y diagrama ERE. Consulta su [README](Practica04/README.md).
+| Práctica | Tema | Estado | Material |
+|---|---|---|---|
+| 02 | Conexión remota en MySQL | Concluida | [Archivos de la práctica](Practica02/) |
+| 02 | Usuarios y privilegios para conexiones remotas SQL | Concluida | [Archivos de la práctica](Practica02/) |
+| 03 | Manipulación de datos en conexiones remotas | Concluida | [README](Practica03/README.md) · [Diccionario interactivo](https://xluiscm.github.io/Practicas_BDN_240343/diccionario/diccionario.html) |
+| 04 | Simulación de compra, cancelaciones, reembolsos y entrega | Concluida | [README](Practica04/README.md) · [Consultas de los cinco casos](Practica04/queries/visualizar_casos_prueba_1_a_5.sql) |
 
-## Enlaces rápidos
+Cada carpeta de práctica conserva sus respaldos, scripts SQL, consultas y documentación.
 
-- [Diccionario interactivo de Práctica 03](https://xluiscm.github.io/Practicas_BDN_240343/diccionario/diccionario.html)
-- [Diccionario interactivo y diagrama ER de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html)
-- [Relaciones entre tablas de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/relaciones.html)
-- [Diagrama ERE de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diagrama_ere.html)
-- [Consultas para verificar los cinco casos de Práctica 04](Practica04/queries/visualizar_casos_prueba_1_a_5.sql)
-- [Mapa general de Archify](.archify/db-test-corregida-resumen-20261108/diccionario-esquema.html)
-- [Documentación técnica de Práctica 03](Practica03/docs/DOCUMENTACION_DB_TEST.md)
+## GitHub Pages
 
-## Diccionario en GitHub Pages
+El sitio publica las vistas HTML desde `docs/`, en la rama `master`. El índice del sitio está en [GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/). Para regenerar el diccionario interactivo de Práctica 04 desde la raíz del repositorio:
 
-El sitio está preparado en `docs/`: el `index.html` enlaza el diccionario de la Práctica 03 y las vistas de diccionario, relaciones y diagrama ERE de la Práctica 04. Los enlaces de acceso directo están arriba. Se publican vistas HTML y JavaScript, sin respaldos SQL ni CSV. En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`. Al regenerar los diccionarios, los scripts de las Prácticas 03 y 04 actualizan también sus copias de publicación.
+```powershell
+node Practica04/scripts/generar_diccionario_interactivo.js
+```
 
-Abre el README de cada práctica para consultar sus objetivos, respaldos e instrucciones de uso.
+El generador actualiza `Practica04/diccionario/` y `docs/practica04/`. La configuración de Pages debe usar **Deploy from a branch**, rama `master` y carpeta `/docs`.
