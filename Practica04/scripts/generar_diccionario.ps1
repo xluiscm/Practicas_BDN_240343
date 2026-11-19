@@ -156,4 +156,20 @@ $annex.Add('')
 $annex.Add('El diccionario HTML y campos.csv detallan tipos, nulabilidad, definiciones SQL y claves. El ERE Mermaid representa los atributos PK/FK y las relaciones declaradas.')
 [System.IO.File]::WriteAllLines((Join-Path $outputDir 'anexo_tecnico.md'), $annex, $utf8)
 
+# Publica las vistas HTML en GitHub Pages; el respaldo SQL y el CSV no se copian a docs/.
+$pagesDir = Join-Path $projectRoot '..\docs'
+$publicDir = Join-Path $pagesDir 'practica04'
+New-Item -ItemType Directory -Force -Path $publicDir | Out-Null
+$githubBase = 'https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/'
+$publicDictionary = [System.IO.File]::ReadAllText((Join-Path $outputDir 'diccionario.html'))
+$publicDictionary = $publicDictionary.Replace("href='campos.csv'", "href='${githubBase}campos.csv'")
+$publicDictionary = $publicDictionary.Replace("href='diagrama_ere.md'", "href='${githubBase}diagrama_ere.md'")
+$publicDictionary = $publicDictionary.Replace("href='anexo_tecnico.md'", "href='${githubBase}anexo_tecnico.md'")
+[System.IO.File]::WriteAllText((Join-Path $publicDir 'diccionario.html'), $publicDictionary, $utf8)
+$publicRelations = [System.IO.File]::ReadAllText((Join-Path $outputDir 'relaciones.html'))
+$publicRelations = $publicRelations.Replace("href='diagrama_ere.md'", "href='${githubBase}diagrama_ere.md'")
+$publicRelations = $publicRelations.Replace("href='campos.csv'", "href='${githubBase}campos.csv'")
+[System.IO.File]::WriteAllText((Join-Path $publicDir 'relaciones.html'), $publicRelations, $utf8)
+
 Write-Output "Generado: $($tables.Count) tablas, $($fields.Count) campos y $($relationships.Count) claves foráneas en $outputDir"
+Write-Output "Publicado para GitHub Pages: $publicDir"

@@ -1,0 +1,283 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Diccionario de datos · db_test_corregida</title>
+<style>body{font:15px system-ui;max-width:1200px;margin:2rem auto;padding:0 1rem;color:#172538;background:#f4f7fb}header,details{background:white;border:1px solid #d7e0ea;border-radius:10px;padding:1rem;margin:.7rem 0}summary{cursor:pointer;font-size:1.05rem}table{border-collapse:collapse;width:100%;margin-top:.8rem}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #d7e0ea;padding:.45rem}code{overflow-wrap:anywhere}input{padding:.65rem;width:min(32rem,90%)}.muted{color:#526477}</style>
+<header><h1>Diccionario de datos: db_test_corregida</h1><p>Fuente: <code>Practica04/backups/respaldo_5casostotalesfinal.sql</code> · 27 tablas · 225 campos</p><p><a href='https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/campos.csv'>CSV</a> · <a href='https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/diagrama_ere.md'>Diagrama ERE (Mermaid)</a> · <a href='relaciones.html'>Relaciones</a> · <a href='https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/anexo_tecnico.md'>Anexo técnico</a></p><input id='q' placeholder='Buscar tabla o campo'></header>
+<details data-search='tb_buyer_orders'><summary><b>tb_buyer_orders</b> — 9 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='key varchar(40) —'><td><code>key</code></td><td><code>varchar(40)</code></td><td>—</td><td>No</td><td><code>varchar(40) NOT NULL</code></td></tr>
+<tr data-search='user_id int fk fk_user_2'><td><code>user_ID</code></td><td><code>int</code></td><td>FK fk_user_2</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='total_products int —'><td><code>total_products</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='total_cost decimal(10,3) —'><td><code>total_cost</code></td><td><code>decimal(10,3)</code></td><td>—</td><td>No</td><td><code>decimal(10,3) NOT NULL DEFAULT &#39;0.000&#39;</code></td></tr>
+<tr data-search='status_string enum(&#39;registered&#39;,&#39;wishlist&#39;,&#39;payed&#39;,&#39;canceled&#39;,&#39;delivered&#39;,&#39;devolved&#39;,&#39;attended&#39;,&#39;sended&#39;) —'><td><code>status_string</code></td><td><code>enum(&#39;Registered&#39;,&#39;Wishlist&#39;,&#39;Payed&#39;,&#39;Canceled&#39;,&#39;Delivered&#39;,&#39;Devolved&#39;,&#39;Attended&#39;,&#39;Sended&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Registered&#39;,&#39;Wishlist&#39;,&#39;Payed&#39;,&#39;Canceled&#39;,&#39;Delivered&#39;,&#39;Devolved&#39;,&#39;Attended&#39;,&#39;Sended&#39;) NOT NULL DEFAULT &#39;Registered&#39;</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>Sí</td><td><code>bit(1) DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_carts'><summary><b>tb_carts</b> — 5 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='user_id int fk fk_cart_user'><td><code>user_ID</code></td><td><code>int</code></td><td>FK fk_cart_user</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='status enum(&#39;active&#39;,&#39;converted&#39;,&#39;abandoned&#39;) —'><td><code>status</code></td><td><code>enum(&#39;Active&#39;,&#39;Converted&#39;,&#39;Abandoned&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Active&#39;,&#39;Converted&#39;,&#39;Abandoned&#39;) NOT NULL DEFAULT &#39;Active&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_logs'><summary><b>tb_logs</b> — 9 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='table_name varchar(100) —'><td><code>table_name</code></td><td><code>varchar(100)</code></td><td>—</td><td>No</td><td><code>varchar(100) NOT NULL</code></td></tr>
+<tr data-search='table_operation enum(&#39;create&#39;,&#39;read&#39;,&#39;update&#39;,&#39;delete&#39;) —'><td><code>table_operation</code></td><td><code>enum(&#39;Create&#39;,&#39;Read&#39;,&#39;Update&#39;,&#39;Delete&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Create&#39;,&#39;Read&#39;,&#39;Update&#39;,&#39;Delete&#39;) NOT NULL</code></td></tr>
+<tr data-search='db_user varchar(80) —'><td><code>db_user</code></td><td><code>varchar(80)</code></td><td>—</td><td>No</td><td><code>varchar(80) NOT NULL</code></td></tr>
+<tr data-search='description text —'><td><code>description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+<tr data-search='operation_date datetime —'><td><code>operation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='operation_status bit(1) —'><td><code>operation_status</code></td><td><code>bit(1)</code></td><td>—</td><td>Sí</td><td><code>bit(1) DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='source_table_operation enum(&#39;insert&#39;,&#39;update&#39;,&#39;delete&#39;) —'><td><code>source_table_operation</code></td><td><code>enum(&#39;INSERT&#39;,&#39;UPDATE&#39;,&#39;DELETE&#39;)</code></td><td>—</td><td>Sí</td><td><code>enum(&#39;INSERT&#39;,&#39;UPDATE&#39;,&#39;DELETE&#39;) DEFAULT NULL</code></td></tr>
+<tr data-search='operation_description text —'><td><code>operation_description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_order_cancellations'><summary><b>tb_order_cancellations</b> — 11 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='cancellation_id bigint pk'><td><code>cancellation_ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='order_id int fk fk_cancellation_order'><td><code>order_ID</code></td><td><code>int</code></td><td>FK fk_cancellation_order</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='seller_order_id int fk fk_cancellation_seller_order'><td><code>seller_order_ID</code></td><td><code>int</code></td><td>FK fk_cancellation_seller_order</td><td>Sí</td><td><code>int unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='product_offer_id int —'><td><code>product_offer_ID</code></td><td><code>int</code></td><td>—</td><td>Sí</td><td><code>int unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='requested_by int fk fk_cancellation_requester'><td><code>requested_by</code></td><td><code>int</code></td><td>FK fk_cancellation_requester</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='cancellation_reason varchar(500) —'><td><code>cancellation_reason</code></td><td><code>varchar(500)</code></td><td>—</td><td>No</td><td><code>varchar(500) NOT NULL</code></td></tr>
+<tr data-search='cancellation_status enum(&#39;requested&#39;,&#39;approved&#39;,&#39;rejected&#39;,&#39;completed&#39;) —'><td><code>cancellation_status</code></td><td><code>enum(&#39;Requested&#39;,&#39;Approved&#39;,&#39;Rejected&#39;,&#39;Completed&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Requested&#39;,&#39;Approved&#39;,&#39;Rejected&#39;,&#39;Completed&#39;) NOT NULL DEFAULT &#39;Requested&#39;</code></td></tr>
+<tr data-search='requested_date datetime —'><td><code>requested_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='resolved_date datetime —'><td><code>resolved_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_payment_transactions'><summary><b>tb_payment_transactions</b> — 7 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='payment_id int fk fk_payment_transaction_payment'><td><code>payment_ID</code></td><td><code>int</code></td><td>FK fk_payment_transaction_payment</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='event_type enum(&#39;created&#39;,&#39;authorized&#39;,&#39;captured&#39;,&#39;failed&#39;,&#39;refunded&#39;,&#39;partiallyrefunded&#39;,&#39;voided&#39;) —'><td><code>event_type</code></td><td><code>enum(&#39;Created&#39;,&#39;Authorized&#39;,&#39;Captured&#39;,&#39;Failed&#39;,&#39;Refunded&#39;,&#39;PartiallyRefunded&#39;,&#39;Voided&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Created&#39;,&#39;Authorized&#39;,&#39;Captured&#39;,&#39;Failed&#39;,&#39;Refunded&#39;,&#39;PartiallyRefunded&#39;,&#39;Voided&#39;) NOT NULL</code></td></tr>
+<tr data-search='amount decimal(12,2) —'><td><code>amount</code></td><td><code>decimal(12,2)</code></td><td>—</td><td>No</td><td><code>decimal(12,2) NOT NULL DEFAULT &#39;0.00&#39;</code></td></tr>
+<tr data-search='event_reference varchar(150) —'><td><code>event_reference</code></td><td><code>varchar(150)</code></td><td>—</td><td>Sí</td><td><code>varchar(150) DEFAULT NULL</code></td></tr>
+<tr data-search='remarks text —'><td><code>remarks</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_payments'><summary><b>tb_payments</b> — 13 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='order_id int fk fk_payment_order'><td><code>order_ID</code></td><td><code>int</code></td><td>FK fk_payment_order</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='user_payment_method_id bigint fk fk_payments_user_method'><td><code>user_payment_method_ID</code></td><td><code>bigint</code></td><td>FK fk_payments_user_method</td><td>Sí</td><td><code>bigint unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='amount decimal(12,2) —'><td><code>amount</code></td><td><code>decimal(12,2)</code></td><td>—</td><td>No</td><td><code>decimal(12,2) NOT NULL</code></td></tr>
+<tr data-search='currency char(3) —'><td><code>currency</code></td><td><code>char(3)</code></td><td>—</td><td>No</td><td><code>char(3) NOT NULL DEFAULT &#39;MXN&#39;</code></td></tr>
+<tr data-search='payment_method enum(&#39;card&#39;,&#39;spei&#39;,&#39;transfer&#39;,&#39;cash&#39;,&#39;other&#39;) —'><td><code>payment_method</code></td><td><code>enum(&#39;Card&#39;,&#39;SPEI&#39;,&#39;Transfer&#39;,&#39;Cash&#39;,&#39;Other&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Card&#39;,&#39;SPEI&#39;,&#39;Transfer&#39;,&#39;Cash&#39;,&#39;Other&#39;) NOT NULL</code></td></tr>
+<tr data-search='provider varchar(50) —'><td><code>provider</code></td><td><code>varchar(50)</code></td><td>—</td><td>Sí</td><td><code>varchar(50) DEFAULT NULL</code></td></tr>
+<tr data-search='provider_reference varchar(150) —'><td><code>provider_reference</code></td><td><code>varchar(150)</code></td><td>—</td><td>Sí</td><td><code>varchar(150) DEFAULT NULL</code></td></tr>
+<tr data-search='idempotency_key varchar(100) —'><td><code>idempotency_key</code></td><td><code>varchar(100)</code></td><td>—</td><td>Sí</td><td><code>varchar(100) DEFAULT NULL</code></td></tr>
+<tr data-search='payment_status enum(&#39;pending&#39;,&#39;authorized&#39;,&#39;paid&#39;,&#39;failed&#39;,&#39;refunded&#39;,&#39;partiallyrefunded&#39;) —'><td><code>payment_status</code></td><td><code>enum(&#39;Pending&#39;,&#39;Authorized&#39;,&#39;Paid&#39;,&#39;Failed&#39;,&#39;Refunded&#39;,&#39;PartiallyRefunded&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Pending&#39;,&#39;Authorized&#39;,&#39;Paid&#39;,&#39;Failed&#39;,&#39;Refunded&#39;,&#39;PartiallyRefunded&#39;) NOT NULL DEFAULT &#39;Pending&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='paid_date datetime —'><td><code>paid_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_people'><summary><b>tb_people</b> — 12 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='person_id bigint pk'><td><code>person_ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='user_id int fk fk_persons_users'><td><code>user_ID</code></td><td><code>int</code></td><td>FK fk_persons_users</td><td>Sí</td><td><code>int DEFAULT NULL</code></td></tr>
+<tr data-search='courtesy_title varchar(20) —'><td><code>courtesy_title</code></td><td><code>varchar(20)</code></td><td>—</td><td>Sí</td><td><code>varchar(20) DEFAULT NULL</code></td></tr>
+<tr data-search='given_names varchar(150) —'><td><code>given_names</code></td><td><code>varchar(150)</code></td><td>—</td><td>No</td><td><code>varchar(150) NOT NULL</code></td></tr>
+<tr data-search='family_names varchar(150) —'><td><code>family_names</code></td><td><code>varchar(150)</code></td><td>—</td><td>Sí</td><td><code>varchar(150) DEFAULT NULL</code></td></tr>
+<tr data-search='birth_date date —'><td><code>birth_date</code></td><td><code>date</code></td><td>—</td><td>Sí</td><td><code>date DEFAULT NULL</code></td></tr>
+<tr data-search='gender_id tinyint —'><td><code>gender_ID</code></td><td><code>tinyint</code></td><td>—</td><td>Sí</td><td><code>tinyint unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='country_code char(2) —'><td><code>country_code</code></td><td><code>char(2)</code></td><td>—</td><td>Sí</td><td><code>char(2) DEFAULT NULL</code></td></tr>
+<tr data-search='phone varchar(25) —'><td><code>phone</code></td><td><code>varchar(25)</code></td><td>—</td><td>Sí</td><td><code>varchar(25) DEFAULT NULL</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>Sí</td><td><code>bit(1) DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_products'><summary><b>tb_products</b> — 9 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='sku varchar(50) —'><td><code>SKU</code></td><td><code>varchar(50)</code></td><td>—</td><td>No</td><td><code>varchar(50) NOT NULL</code></td></tr>
+<tr data-search='name varchar(250) —'><td><code>name</code></td><td><code>varchar(250)</code></td><td>—</td><td>No</td><td><code>varchar(250) NOT NULL</code></td></tr>
+<tr data-search='description text —'><td><code>description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+<tr data-search='current_price decimal(10,2) —'><td><code>current_price</code></td><td><code>decimal(10,2)</code></td><td>—</td><td>No</td><td><code>decimal(10,2) NOT NULL DEFAULT &#39;0.00&#39;</code></td></tr>
+<tr data-search='current_stock int —'><td><code>current_stock</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int unsigned NOT NULL DEFAULT &#39;0&#39;</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>Sí</td><td><code>bit(1) DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_refunds'><summary><b>tb_refunds</b> — 13 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='refund_id bigint pk'><td><code>refund_ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='payment_id int fk fk_refund_payment'><td><code>payment_ID</code></td><td><code>int</code></td><td>FK fk_refund_payment</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='cancellation_id bigint fk fk_refund_cancellation'><td><code>cancellation_ID</code></td><td><code>bigint</code></td><td>FK fk_refund_cancellation</td><td>Sí</td><td><code>bigint unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='return_id bigint fk fk_refund_return'><td><code>return_ID</code></td><td><code>bigint</code></td><td>FK fk_refund_return</td><td>Sí</td><td><code>bigint unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='amount decimal(12,2) —'><td><code>amount</code></td><td><code>decimal(12,2)</code></td><td>—</td><td>No</td><td><code>decimal(12,2) NOT NULL</code></td></tr>
+<tr data-search='currency char(3) —'><td><code>currency</code></td><td><code>char(3)</code></td><td>—</td><td>No</td><td><code>char(3) NOT NULL DEFAULT &#39;MXN&#39;</code></td></tr>
+<tr data-search='refund_reason varchar(500) —'><td><code>refund_reason</code></td><td><code>varchar(500)</code></td><td>—</td><td>Sí</td><td><code>varchar(500) DEFAULT NULL</code></td></tr>
+<tr data-search='refund_status enum(&#39;requested&#39;,&#39;approved&#39;,&#39;processing&#39;,&#39;completed&#39;,&#39;failed&#39;,&#39;rejected&#39;) —'><td><code>refund_status</code></td><td><code>enum(&#39;Requested&#39;,&#39;Approved&#39;,&#39;Processing&#39;,&#39;Completed&#39;,&#39;Failed&#39;,&#39;Rejected&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Requested&#39;,&#39;Approved&#39;,&#39;Processing&#39;,&#39;Completed&#39;,&#39;Failed&#39;,&#39;Rejected&#39;) NOT NULL DEFAULT &#39;Requested&#39;</code></td></tr>
+<tr data-search='provider_reference varchar(150) —'><td><code>provider_reference</code></td><td><code>varchar(150)</code></td><td>—</td><td>Sí</td><td><code>varchar(150) DEFAULT NULL</code></td></tr>
+<tr data-search='requested_date datetime —'><td><code>requested_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='completed_date datetime —'><td><code>completed_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_returns'><summary><b>tb_returns</b> — 13 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='return_id bigint pk'><td><code>return_ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='order_id int fk fk_return_order'><td><code>order_ID</code></td><td><code>int</code></td><td>FK fk_return_order</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='product_offer_id int —'><td><code>product_offer_ID</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='requested_by int fk fk_return_requester'><td><code>requested_by</code></td><td><code>int</code></td><td>FK fk_return_requester</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='quantity int —'><td><code>quantity</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='return_reason enum(&#39;defective&#39;,&#39;damaged&#39;,&#39;wrongproduct&#39;,&#39;notasdescribed&#39;,&#39;wrongsize&#39;,&#39;changedmind&#39;,&#39;other&#39;) —'><td><code>return_reason</code></td><td><code>enum(&#39;Defective&#39;,&#39;Damaged&#39;,&#39;WrongProduct&#39;,&#39;NotAsDescribed&#39;,&#39;WrongSize&#39;,&#39;ChangedMind&#39;,&#39;Other&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Defective&#39;,&#39;Damaged&#39;,&#39;WrongProduct&#39;,&#39;NotAsDescribed&#39;,&#39;WrongSize&#39;,&#39;ChangedMind&#39;,&#39;Other&#39;) NOT NULL DEFAULT &#39;Other&#39;</code></td></tr>
+<tr data-search='return_status enum(&#39;requested&#39;,&#39;authorized&#39;,&#39;rejected&#39;,&#39;intransit&#39;,&#39;received&#39;,&#39;inspected&#39;,&#39;completed&#39;) —'><td><code>return_status</code></td><td><code>enum(&#39;Requested&#39;,&#39;Authorized&#39;,&#39;Rejected&#39;,&#39;InTransit&#39;,&#39;Received&#39;,&#39;Inspected&#39;,&#39;Completed&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Requested&#39;,&#39;Authorized&#39;,&#39;Rejected&#39;,&#39;InTransit&#39;,&#39;Received&#39;,&#39;Inspected&#39;,&#39;Completed&#39;) NOT NULL DEFAULT &#39;Requested&#39;</code></td></tr>
+<tr data-search='inspection_notes text —'><td><code>inspection_notes</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+<tr data-search='requested_date datetime —'><td><code>requested_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='received_date datetime —'><td><code>received_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='completed_date datetime —'><td><code>completed_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_seller_orders'><summary><b>tb_seller_orders</b> — 8 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='order_id int fk fk_seller_order_order'><td><code>order_ID</code></td><td><code>int</code></td><td>FK fk_seller_order_order</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='seller_id int fk fk_seller_order_seller'><td><code>seller_ID</code></td><td><code>int</code></td><td>FK fk_seller_order_seller</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='subtotal decimal(12,2) —'><td><code>subtotal</code></td><td><code>decimal(12,2)</code></td><td>—</td><td>No</td><td><code>decimal(12,2) NOT NULL DEFAULT &#39;0.00&#39;</code></td></tr>
+<tr data-search='shipping_cost decimal(12,2) —'><td><code>shipping_cost</code></td><td><code>decimal(12,2)</code></td><td>—</td><td>No</td><td><code>decimal(12,2) NOT NULL DEFAULT &#39;0.00&#39;</code></td></tr>
+<tr data-search='fulfillment_status enum(&#39;pending&#39;,&#39;accepted&#39;,&#39;preparing&#39;,&#39;sent&#39;,&#39;delivered&#39;,&#39;canceled&#39;,&#39;returned&#39;) —'><td><code>fulfillment_status</code></td><td><code>enum(&#39;Pending&#39;,&#39;Accepted&#39;,&#39;Preparing&#39;,&#39;Sent&#39;,&#39;Delivered&#39;,&#39;Canceled&#39;,&#39;Returned&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Pending&#39;,&#39;Accepted&#39;,&#39;Preparing&#39;,&#39;Sent&#39;,&#39;Delivered&#39;,&#39;Canceled&#39;,&#39;Returned&#39;) NOT NULL DEFAULT &#39;Pending&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_shipments'><summary><b>tb_shipments</b> — 12 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='shipment_id bigint pk'><td><code>shipment_ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='seller_order_id int fk fk_shipments_seller_order'><td><code>seller_order_ID</code></td><td><code>int</code></td><td>FK fk_shipments_seller_order</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='delivery_address_id bigint fk fk_shipments_delivery_address'><td><code>delivery_address_ID</code></td><td><code>bigint</code></td><td>FK fk_shipments_delivery_address</td><td>Sí</td><td><code>bigint unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='carrier varchar(100) —'><td><code>carrier</code></td><td><code>varchar(100)</code></td><td>—</td><td>Sí</td><td><code>varchar(100) DEFAULT NULL</code></td></tr>
+<tr data-search='tracking_number varchar(150) —'><td><code>tracking_number</code></td><td><code>varchar(150)</code></td><td>—</td><td>Sí</td><td><code>varchar(150) DEFAULT NULL</code></td></tr>
+<tr data-search='tracking_url varchar(500) —'><td><code>tracking_url</code></td><td><code>varchar(500)</code></td><td>—</td><td>Sí</td><td><code>varchar(500) DEFAULT NULL</code></td></tr>
+<tr data-search='shipment_status enum(&#39;pending&#39;,&#39;preparing&#39;,&#39;shipped&#39;,&#39;intransit&#39;,&#39;outfordelivery&#39;,&#39;delivered&#39;,&#39;deliveryfailed&#39;,&#39;lost&#39;,&#39;returned&#39;) —'><td><code>shipment_status</code></td><td><code>enum(&#39;Pending&#39;,&#39;Preparing&#39;,&#39;Shipped&#39;,&#39;InTransit&#39;,&#39;OutForDelivery&#39;,&#39;Delivered&#39;,&#39;DeliveryFailed&#39;,&#39;Lost&#39;,&#39;Returned&#39;)</code></td><td>—</td><td>No</td><td><code>enum(&#39;Pending&#39;,&#39;Preparing&#39;,&#39;Shipped&#39;,&#39;InTransit&#39;,&#39;OutForDelivery&#39;,&#39;Delivered&#39;,&#39;DeliveryFailed&#39;,&#39;Lost&#39;,&#39;Returned&#39;) NOT NULL DEFAULT &#39;Pending&#39;</code></td></tr>
+<tr data-search='shipped_date datetime —'><td><code>shipped_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='estimated_delivery_date datetime —'><td><code>estimated_delivery_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='delivered_date datetime —'><td><code>delivered_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_user_addresses'><summary><b>tb_user_addresses</b> — 12 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id bigint pk'><td><code>ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='user_id int fk fk_addresses_users'><td><code>user_ID</code></td><td><code>int</code></td><td>FK fk_addresses_users</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='address_label varchar(100) —'><td><code>address_label</code></td><td><code>varchar(100)</code></td><td>—</td><td>No</td><td><code>varchar(100) NOT NULL</code></td></tr>
+<tr data-search='recipient_name varchar(150) —'><td><code>recipient_name</code></td><td><code>varchar(150)</code></td><td>—</td><td>Sí</td><td><code>varchar(150) DEFAULT NULL</code></td></tr>
+<tr data-search='recipient_phone varchar(25) —'><td><code>recipient_phone</code></td><td><code>varchar(25)</code></td><td>—</td><td>Sí</td><td><code>varchar(25) DEFAULT NULL</code></td></tr>
+<tr data-search='delivery_instructions varchar(500) —'><td><code>delivery_instructions</code></td><td><code>varchar(500)</code></td><td>—</td><td>Sí</td><td><code>varchar(500) DEFAULT NULL</code></td></tr>
+<tr data-search='latitude decimal(10,7) —'><td><code>latitude</code></td><td><code>decimal(10,7)</code></td><td>—</td><td>Sí</td><td><code>decimal(10,7) DEFAULT NULL</code></td></tr>
+<tr data-search='longitude decimal(10,7) —'><td><code>longitude</code></td><td><code>decimal(10,7)</code></td><td>—</td><td>Sí</td><td><code>decimal(10,7) DEFAULT NULL</code></td></tr>
+<tr data-search='is_default tinyint(1) —'><td><code>is_default</code></td><td><code>tinyint(1)</code></td><td>—</td><td>No</td><td><code>tinyint(1) NOT NULL DEFAULT &#39;0&#39;</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tb_users'><summary><b>tb_users</b> — 8 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='email varchar(80) —'><td><code>email</code></td><td><code>varchar(80)</code></td><td>—</td><td>No</td><td><code>varchar(80) NOT NULL</code></td></tr>
+<tr data-search='nick varchar(100) —'><td><code>nick</code></td><td><code>varchar(100)</code></td><td>—</td><td>No</td><td><code>varchar(100) NOT NULL</code></td></tr>
+<tr data-search='password varchar(255) —'><td><code>password</code></td><td><code>varchar(255)</code></td><td>—</td><td>No</td><td><code>varchar(255) NOT NULL</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_login datetime —'><td><code>last_login</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+</tbody></table></details>
+<details data-search='tbc_categories'><summary><b>tbc_categories</b> — 7 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='name varchar(120) —'><td><code>name</code></td><td><code>varchar(120)</code></td><td>—</td><td>No</td><td><code>varchar(120) NOT NULL</code></td></tr>
+<tr data-search='description text —'><td><code>description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+<tr data-search='sup_id_category int fk fk_superior_category'><td><code>sup_id_category</code></td><td><code>int</code></td><td>FK fk_superior_category</td><td>Sí</td><td><code>int unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbc_payment_methods_types'><summary><b>tbc_payment_methods_types</b> — 6 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='code varchar(30) —'><td><code>code</code></td><td><code>varchar(30)</code></td><td>—</td><td>No</td><td><code>varchar(30) NOT NULL</code></td></tr>
+<tr data-search='description text —'><td><code>description</code></td><td><code>text</code></td><td>—</td><td>No</td><td><code>text NOT NULL</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbc_payment_methods_types_res'><summary><b>tbc_payment_methods_types_res</b> — 4 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>id</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='name varchar(100) —'><td><code>name</code></td><td><code>varchar(100)</code></td><td>—</td><td>No</td><td><code>varchar(100) NOT NULL</code></td></tr>
+<tr data-search='description text —'><td><code>description</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+<tr data-search='is_active tinyint(1) —'><td><code>is_active</code></td><td><code>tinyint(1)</code></td><td>—</td><td>Sí</td><td><code>tinyint(1) DEFAULT &#39;1&#39;</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_address_components'><summary><b>tbd_address_components</b> — 8 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id bigint pk'><td><code>ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='address_id bigint fk fk_component_address; fk fk_component_parent'><td><code>address_ID</code></td><td><code>bigint</code></td><td>FK fk_component_address; FK fk_component_parent</td><td>No</td><td><code>bigint unsigned NOT NULL</code></td></tr>
+<tr data-search='value varchar(255) —'><td><code>value</code></td><td><code>varchar(255)</code></td><td>—</td><td>No</td><td><code>varchar(255) NOT NULL</code></td></tr>
+<tr data-search='component_type varchar(50) —'><td><code>component_type</code></td><td><code>varchar(50)</code></td><td>—</td><td>No</td><td><code>varchar(50) NOT NULL</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='address_sup_id bigint fk fk_component_parent'><td><code>address_sup_ID</code></td><td><code>bigint</code></td><td>FK fk_component_parent</td><td>Sí</td><td><code>bigint unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_cancellation_items'><summary><b>tbd_cancellation_items</b> — 5 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>id</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='cancellation_id int —'><td><code>cancellation_id</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='order_item_id int —'><td><code>order_item_id</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='quantity int —'><td><code>quantity</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='reason varchar(255) —'><td><code>reason</code></td><td><code>varchar(255)</code></td><td>—</td><td>Sí</td><td><code>varchar(255) DEFAULT NULL</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_cart_items'><summary><b>tbd_cart_items</b> — 5 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='cart_id int pk; fk fk_cart_item_cart'><td><code>cart_ID</code></td><td><code>int</code></td><td>PK; FK fk_cart_item_cart</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='product_offer_id int pk; fk fk_cart_item_offer'><td><code>product_offer_ID</code></td><td><code>int</code></td><td>PK; FK fk_cart_item_offer</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='quantity int —'><td><code>quantity</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int unsigned NOT NULL DEFAULT &#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_order_items'><summary><b>tbd_order_items</b> — 8 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='seller_order_id int fk fk_order_item_seller_order'><td><code>seller_order_ID</code></td><td><code>int</code></td><td>FK fk_order_item_seller_order</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='product_offer_id int fk fk_order_item_offer'><td><code>product_offer_ID</code></td><td><code>int</code></td><td>FK fk_order_item_offer</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='product_name varchar(250) —'><td><code>product_name</code></td><td><code>varchar(250)</code></td><td>—</td><td>No</td><td><code>varchar(250) NOT NULL</code></td></tr>
+<tr data-search='quantity int —'><td><code>quantity</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='unit_price decimal(12,2) —'><td><code>unit_price</code></td><td><code>decimal(12,2)</code></td><td>—</td><td>No</td><td><code>decimal(12,2) NOT NULL</code></td></tr>
+<tr data-search='subtotal decimal(14,2) —'><td><code>subtotal</code></td><td><code>decimal(14,2)</code></td><td>—</td><td>Sí</td><td><code>decimal(14,2) GENERATED ALWAYS AS ((`quantity` * `unit_price`)) STORED</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_orders'><summary><b>tbd_orders</b> — 9 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='key varchar(40) —'><td><code>key</code></td><td><code>varchar(40)</code></td><td>—</td><td>No</td><td><code>varchar(40) NOT NULL</code></td></tr>
+<tr data-search='total_products int —'><td><code>total_products</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='total_cost decimal(10,3) —'><td><code>total_cost</code></td><td><code>decimal(10,3)</code></td><td>—</td><td>No</td><td><code>decimal(10,3) NOT NULL DEFAULT &#39;0.000&#39;</code></td></tr>
+<tr data-search='status_string enum(&#39;registered&#39;,&#39;attend&#39;,&#39;canceled&#39;,&#39;whistlist&#39;,&#39;payed&#39;,&#39;delivered&#39;,&#39;devolved&#39;,&#39;sended&#39;) —'><td><code>status_string</code></td><td><code>enum(&#39;Registered&#39;,&#39;Attend&#39;,&#39;Canceled&#39;,&#39;Whistlist&#39;,&#39;Payed&#39;,&#39;Delivered&#39;,&#39;Devolved&#39;,&#39;Sended&#39;)</code></td><td>—</td><td>Sí</td><td><code>enum(&#39;Registered&#39;,&#39;Attend&#39;,&#39;Canceled&#39;,&#39;Whistlist&#39;,&#39;Payed&#39;,&#39;Delivered&#39;,&#39;Devolved&#39;,&#39;Sended&#39;) DEFAULT NULL</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='user_id varchar(45) —'><td><code>User_ID</code></td><td><code>varchar(45)</code></td><td>—</td><td>Sí</td><td><code>varchar(45) DEFAULT NULL</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_products_categories'><summary><b>tbd_products_categories</b> — 5 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='category_id int pk; fk fk_category'><td><code>category_ID</code></td><td><code>int</code></td><td>PK; FK fk_category</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='product_id int pk; fk fk_product'><td><code>product_ID</code></td><td><code>int</code></td><td>PK; FK fk_product</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_return_items'><summary><b>tbd_return_items</b> — 5 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id int pk'><td><code>id</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='return_id int —'><td><code>return_id</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='order_item_id int —'><td><code>order_item_id</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='quantity int —'><td><code>quantity</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='condition_notes text —'><td><code>condition_notes</code></td><td><code>text</code></td><td>—</td><td>Sí</td><td><code>text</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_user_payment_methods'><summary><b>tbd_user_payment_methods</b> — 11 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='id bigint pk'><td><code>ID</code></td><td><code>bigint</code></td><td>PK</td><td>No</td><td><code>bigint unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='user_id int fk tbd_user_payment_methods_ibfk_1'><td><code>user_ID</code></td><td><code>int</code></td><td>FK tbd_user_payment_methods_ibfk_1</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='payment_method_type_id int fk tbd_user_payment_methods_ibfk_2'><td><code>payment_method_type_ID</code></td><td><code>int</code></td><td>FK tbd_user_payment_methods_ibfk_2</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='provider varchar(60) —'><td><code>provider</code></td><td><code>varchar(60)</code></td><td>—</td><td>No</td><td><code>varchar(60) NOT NULL</code></td></tr>
+<tr data-search='provider_method_ref varchar(255) —'><td><code>provider_method_ref</code></td><td><code>varchar(255)</code></td><td>—</td><td>No</td><td><code>varchar(255) NOT NULL</code></td></tr>
+<tr data-search='label varchar(100) —'><td><code>label</code></td><td><code>varchar(100)</code></td><td>—</td><td>Sí</td><td><code>varchar(100) DEFAULT NULL</code></td></tr>
+<tr data-search='last_four char(4) —'><td><code>last_four</code></td><td><code>char(4)</code></td><td>—</td><td>Sí</td><td><code>char(4) DEFAULT NULL</code></td></tr>
+<tr data-search='is_default tinyint(1) —'><td><code>is_default</code></td><td><code>tinyint(1)</code></td><td>—</td><td>No</td><td><code>tinyint(1) NOT NULL DEFAULT &#39;0&#39;</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_users_offer_products'><summary><b>tbd_users_offer_products</b> — 8 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='product_offer_id int pk'><td><code>product_offer_ID</code></td><td><code>int</code></td><td>PK</td><td>No</td><td><code>int unsigned NOT NULL AUTO_INCREMENT</code></td></tr>
+<tr data-search='user_id int —'><td><code>user_ID</code></td><td><code>int</code></td><td>—</td><td>Sí</td><td><code>int unsigned DEFAULT NULL</code></td></tr>
+<tr data-search='product_id int fk fk_product_2'><td><code>product_ID</code></td><td><code>int</code></td><td>FK fk_product_2</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='available_stock int —'><td><code>available_stock</code></td><td><code>int</code></td><td>—</td><td>No</td><td><code>int NOT NULL DEFAULT &#39;1&#39;</code></td></tr>
+<tr data-search='status bit(1) —'><td><code>status</code></td><td><code>bit(1)</code></td><td>—</td><td>No</td><td><code>bit(1) NOT NULL DEFAULT b&#39;1&#39;</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+<tr data-search='available_date datetime —'><td><code>available_date</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL</code></td></tr>
+<tr data-search='last_update datetime —'><td><code>last_update</code></td><td><code>datetime</code></td><td>—</td><td>Sí</td><td><code>datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<details data-search='tbd_wishlist_products'><summary><b>tbd_wishlist_products</b> — 3 campos</summary><table><thead><tr><th>Campo</th><th>Tipo SQL</th><th>Claves</th><th>NULL</th><th>Definición SQL</th></tr></thead><tbody>
+<tr data-search='user_id int pk; fk fk_wishlist_user'><td><code>user_ID</code></td><td><code>int</code></td><td>PK; FK fk_wishlist_user</td><td>No</td><td><code>int NOT NULL</code></td></tr>
+<tr data-search='product_id int pk; fk fk_wishlist_product'><td><code>product_ID</code></td><td><code>int</code></td><td>PK; FK fk_wishlist_product</td><td>No</td><td><code>int unsigned NOT NULL</code></td></tr>
+<tr data-search='creation_date datetime —'><td><code>creation_date</code></td><td><code>datetime</code></td><td>—</td><td>No</td><td><code>datetime NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+</tbody></table></details>
+<script>document.querySelector("#q").addEventListener("input",e=>{const q=e.target.value.toLowerCase();document.querySelectorAll("details[data-search]").forEach(d=>{const hit=d.dataset.search.includes(q)||[...d.querySelectorAll("tr[data-search]")].some(r=>r.dataset.search.includes(q));d.hidden=!hit;d.open=!!q&&hit})})</script></html>

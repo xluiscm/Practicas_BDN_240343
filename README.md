@@ -27,7 +27,7 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 ## Enlaces rápidos
 
 - [Diccionario interactivo de Práctica 03](https://xluiscm.github.io/Practicas_BDN_240343/diccionario/diccionario.html)
-- [Diccionario de datos de Práctica 04](Practica04/diccionario/diccionario.html)
+- [Diccionario de datos de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html)
 - [Diagrama ERE de Práctica 04](Practica04/diccionario/diagrama_ere.md)
 - [Consultas para verificar los cinco casos de Práctica 04](Practica04/queries/visualizar_casos_prueba_1_a_5.sql)
 - [Mapa general de Archify](.archify/db-test-corregida-resumen-20261108/diccionario-esquema.html)
@@ -35,6 +35,6 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 
 ## Diccionario en GitHub Pages
 
-El sitio está preparado en `docs/`: el `index.html` abre el diccionario y solo se publican los archivos HTML y JavaScript necesarios, sin respaldos SQL ni CSV. En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`. Al regenerar el diccionario con el script de Práctica 03, se actualiza también esta copia de publicación.
+El sitio está preparado en `docs/`: el `index.html` enlaza los diccionarios de las Prácticas 03 y 04. El acceso directo al diccionario de la Práctica 04 es [GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html). Se publican vistas HTML y JavaScript, sin respaldos SQL ni CSV. En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`. Al regenerar los diccionarios, los scripts de las Prácticas 03 y 04 actualizan también sus copias de publicación.
 
 Abre el README de cada práctica para consultar sus objetivos, respaldos e instrucciones de uso.
