@@ -27,7 +27,7 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 ## Enlaces rápidos
 
 - [Diccionario interactivo de Práctica 03](https://xluiscm.github.io/Practicas_BDN_240343/diccionario/diccionario.html)
-- [Diccionario de datos de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html)
+- [Diccionario interactivo y diagrama ER de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html)
 - [Relaciones entre tablas de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/relaciones.html)
 - [Diagrama ERE de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diagrama_ere.html)
 - [Consultas para verificar los cinco casos de Práctica 04](Practica04/queries/visualizar_casos_prueba_1_a_5.sql)

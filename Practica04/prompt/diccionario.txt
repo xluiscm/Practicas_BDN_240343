@@ -1,0 +1,39 @@
+# Instrucciones para generar y revisar el diccionario de Práctica 04
+
+## Objetivo
+
+Usa el mismo explorador interactivo y el mismo diagrama ER navegable de Práctica 03, adaptados al respaldo final de Práctica 04. Mantén el diccionario fiel al DDL de `db_test_corregida` y permite cargar otros respaldos localmente desde el navegador.
+
+## Fuente y ejecución
+
+Trabaja desde la raíz del repositorio. El respaldo de referencia es `Practica04/backups/respaldo_5casostotalesfinal.sql`. Acepta una ruta SQL opcional para generar una vista basada en otro dump.
+
+```powershell
+node Practica04/scripts/generar_diccionario_interactivo.js
+node Practica04/scripts/generar_diccionario_interactivo.js Practica04/backups/respaldo_5casostotalesfinal.sql
+```
+
+El generador obtiene tablas, columnas, definiciones SQL, claves primarias, índices, claves foráneas y reglas `ON DELETE`/`ON UPDATE` del DDL. Cuenta filas presentes en `INSERT` sin confundir paréntesis dentro de valores de texto. No usa un CSV anterior como fuente del esquema.
+
+## Archivos de salida
+
+- `Practica04/diccionario/campos.csv`: inventario tabular generado desde el DDL seleccionado.
+- `Practica04/diccionario/diccionario.html`: explorador con el mismo diseño, diagrama SVG navegable y herramientas de Práctica 03.
+- `Practica04/diccionario/backup-picker.js`: lector local de respaldos que actualiza conteos, diagrama, tablas y relaciones en el navegador.
+- `docs/practica04/diccionario.html` y `docs/practica04/backup-picker.js`: copias publicadas en GitHub Pages.
+- `Practica04/diccionario/diagrama_ere.md`: fuente Mermaid complementaria para el respaldo final.
+
+## Requisitos del explorador
+
+Debe mostrar la base, cantidad de tablas, campos, filas exportadas, claves foráneas y objetos del dump. Debe permitir navegar el diagrama ER, filtrar por módulo, buscar tablas/campos y consultar tipos SQL, PK/FK, nulabilidad, valores por defecto, índices y relaciones entrantes y salientes.
+
+El selector acepta archivos `.sql` locales, reconstruye el diagrama y los detalles a partir del archivo seleccionado, y muestra errores de lectura comprensibles. El archivo se procesa en el navegador y no se envía a un servidor.
+
+## Reglas de precisión
+
+- Usa exclusivamente el respaldo seleccionado como evidencia de estructura, relaciones y conteos.
+- Distingue los hechos del SQL de cualquier interpretación funcional.
+- Los conteos de filas corresponden a `INSERT` del dump; no son métricas en vivo.
+- No inventes vistas, rutinas, triggers, reglas de negocio ni cardinalidades ausentes del DDL.
+- Conserva respaldos históricos y no los reemplaces al generar el diccionario.
+- Mantén UTF-8 y enlaces relativos válidos en las vistas locales y publicadas.

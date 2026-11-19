@@ -14,7 +14,8 @@ Practica04/
 │   ├── visualizar_casos_prueba_1_a_5.sql  # consultas para revisar los cinco casos
 │   └── consultas_de_verificacion.sql       # consultas heredadas de la práctica 03
 ├── diccionario/
-│   ├── diccionario.html                    # diccionario interactivo de campos
+│   ├── diccionario.html                    # explorador interactivo y diagrama ER
+│   ├── backup-picker.js                    # lector local de respaldos SQL
 │   ├── relaciones.html                     # entidades y claves foráneas
 │   ├── diagrama_ere.md                     # diagrama ERE en Mermaid
 │   ├── campos.csv                          # inventario tabular de campos
@@ -31,8 +32,11 @@ Practica04/
 │   │   └── 04_compra_recoleccion_punto.sql
 │   ├── caso_prueba_5/
 │   │   └── 05_compra_fallida_inventario_cupon.sql
-│   ├── generar_diccionario.ps1             # regenera la documentación desde el respaldo
+│   ├── generar_diccionario_interactivo.js   # generador con el diseño de Práctica 03
+│   ├── generar_diccionario.ps1             # compatibilidad con el comando PowerShell
 │   └── remote_users_priviliges_creation.sql # cuentas, roles y permisos
+├── prompt/
+│   └── diccionario.txt                     # instrucciones de generación y revisión
 ├── guia_simulacion_workbench.txt
 └── README.md
 ```
@@ -41,7 +45,7 @@ Practica04/
 
 ## Diccionario de datos y diagrama ERE
 
-La documentación se genera desde el DDL de `backups/respaldo_5casostotalesfinal.sql` y cubre 27 tablas, 225 campos y 33 claves foráneas. Consulta el [diccionario de datos en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html), las [relaciones entre tablas](https://xluiscm.github.io/Practicas_BDN_240343/practica04/relaciones.html) y el [diagrama ERE interactivo](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diagrama_ere.html). También están los archivos fuente `diccionario/diagrama_ere.md`, `diccionario/campos.csv` y `diccionario/anexo_tecnico.md`. Para regenerar la documentación después de cambiar el respaldo, ejecuta `powershell -ExecutionPolicy Bypass -File scripts/generar_diccionario.ps1` desde `Practica04`; el script actualiza las vistas publicadas en `docs/practica04/`.
+La documentación se genera desde el DDL de `backups/respaldo_5casostotalesfinal.sql` y cubre 27 tablas, 225 campos y 33 claves foráneas. El [diccionario interactivo en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html) usa el mismo explorador y diagrama ER navegable que Práctica 03; también permite cargar un respaldo SQL localmente para analizar su esquema en el navegador. Consulta además las [relaciones entre tablas](https://xluiscm.github.io/Practicas_BDN_240343/practica04/relaciones.html) y el [diagrama ERE](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diagrama_ere.html). Para regenerar desde la raíz del repositorio ejecuta `node Practica04/scripts/generar_diccionario_interactivo.js`; el generador actualiza `Practica04/diccionario/` y las vistas publicadas en `docs/practica04/`. Las instrucciones están en `prompt/diccionario.txt`.
 
 ## Caso de prueba 1
 
