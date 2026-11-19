@@ -13,6 +13,12 @@ Practica04/
 ├── queries/
 │   ├── visualizar_casos_prueba_1_a_5.sql  # consultas para revisar los cinco casos
 │   └── consultas_de_verificacion.sql       # consultas heredadas de la práctica 03
+├── diccionario/
+│   ├── diccionario.html                    # diccionario interactivo de campos
+│   ├── relaciones.html                     # entidades y claves foráneas
+│   ├── diagrama_ere.md                     # diagrama ERE en Mermaid
+│   ├── campos.csv                          # inventario tabular de campos
+│   └── anexo_tecnico.md                    # fuente y resumen del esquema
 ├── scripts/
 │   ├── caso_prueba_1/
 │   │   ├── 01_preparar_catalogo.sql         # prepara esquema, ofertas y procedimientos
@@ -25,12 +31,17 @@ Practica04/
 │   │   └── 04_compra_recoleccion_punto.sql
 │   ├── caso_prueba_5/
 │   │   └── 05_compra_fallida_inventario_cupon.sql
+│   ├── generar_diccionario.ps1             # regenera la documentación desde el respaldo
 │   └── remote_users_priviliges_creation.sql # cuentas, roles y permisos
 ├── guia_simulacion_workbench.txt
 └── README.md
 ```
 
 `respaldo_5casostotalesfinal.sql` es el respaldo más reciente. El volcado terminó el 18 de noviembre de 2026 a las 23:31:17 e incluye evidencia de los cinco casos. En el Caso 4, la compra de recolección es la orden `10`; en el Caso 5, la ejecución corregida es la orden `12`. La orden `11` conserva un intento previo que se recuperó tras una ejecución interrumpida.
+
+## Diccionario de datos y diagrama ERE
+
+La documentación se genera desde el DDL de `backups/respaldo_5casostotalesfinal.sql` y cubre 27 tablas, 225 campos y 33 claves foráneas. Abre `diccionario/diccionario.html` para buscar campos; `diccionario/diagrama_ere.md` contiene el diagrama ERE Mermaid. `diccionario/relaciones.html` y `diccionario/campos.csv` ofrecen vistas complementarias. Para regenerar los archivos después de cambiar el respaldo, ejecuta `powershell -ExecutionPolicy Bypass -File scripts/generar_diccionario.ps1` desde `Practica04`.
 
 ## Caso de prueba 1
 
