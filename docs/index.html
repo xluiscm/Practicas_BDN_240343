@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
@@ -6,20 +6,39 @@
     <meta name="theme-color" content="#0b1020">
     <title>Diccionarios de datos · BDN</title>
     <style>
-      body{font:16px/1.5 system-ui,sans-serif;max-width:760px;margin:12vh auto;padding:0 1.25rem;background:#0b1020;color:#f3f2ff}
-      a{color:#c4b5fd}li{margin:.8rem 0}
+      *{box-sizing:border-box}
+      body{font:16px/1.5 system-ui,sans-serif;max-width:980px;margin:10vh auto;padding:0 1.25rem;background:#0b1020;color:#f3f2ff}
+      h1{font-size:clamp(2rem,5vw,3rem);margin-bottom:.25rem}
+      .intro{color:#b8c1d6;margin-top:0}
+      .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin:2rem 0}
+      .card{background:#121a2b;border:1px solid #303c58;border-radius:16px;padding:1.4rem;display:flex;flex-direction:column;align-items:flex-start}
+      .card h2{margin:.1rem 0 .35rem}
+      .card p{color:#b8c1d6;margin:.25rem 0 1.2rem}
+      a{color:#c4b5fd}
+      .primary{display:inline-block;background:#302750;color:#fff;text-decoration:none;font-weight:650;padding:.7rem 1rem;border:1px solid #7562a9;border-radius:9px;margin-top:auto}
+      .primary:hover{background:#403365}
+      .extra{margin:.8rem 0 0;font-size:.92rem}
+      footer{color:#8793aa;font-size:.85rem;margin-top:2rem}
     </style>
   </head>
   <body>
     <main>
       <h1>Diccionarios de datos</h1>
-      <p>Consulta los esquemas de las prácticas:</p>
-      <ul>
-        <li><a href="diccionario/diccionario.html">Práctica 03: Nexo de Datos</a></li>
-        <li><a href="practica04/diccionario.html">Práctica 04: diccionario interactivo y diagrama ER</a></li>
-        <li><a href="practica04/relaciones.html">Práctica 04: relaciones entre tablas</a></li>
-        <li><a href="practica04/diagrama_ere.html">Práctica 04: diagrama ERE</a></li>
-      </ul>
+      <p class="intro">Elige la práctica que quieres consultar.</p>
+      <section class="choices" aria-label="Seleccionar práctica">
+        <article class="card">
+          <h2>Práctica 03</h2>
+          <p>Nexo de Datos: estructura, tablas y relaciones del esquema.</p>
+          <a class="primary" href="diccionario/diccionario.html">Abrir diccionario de Práctica 03</a>
+        </article>
+        <article class="card">
+          <h2>Práctica 04</h2>
+          <p>Explora el diagrama ER, las tablas y los campos. Puedes cargar un respaldo SQL local para analizarlo en el navegador.</p>
+          <a class="primary" href="practica04/diccionario.html">Abrir diccionario de Práctica 04</a>
+          <p class="extra"><a href="practica04/relaciones.html">Relaciones entre tablas</a> · <a href="practica04/diagrama_ere.html">Diagrama ERE</a></p>
+        </article>
+      </section>
+      <footer>Proyectos de Bases de Datos en la Nube · GitHub Pages</footer>
     </main>
   </body>
 </html>
