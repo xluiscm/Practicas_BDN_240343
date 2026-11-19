@@ -4,21 +4,58 @@ USE db_test_corregida;
 
 -- Vincular el pago con el metodo guardado y el envio con el domicilio.
 -- Ejecutar una sola vez por restauracion limpia.
-ALTER TABLE tb_payments
-    ADD COLUMN user_payment_method_ID BIGINT UNSIGNED NULL AFTER order_ID,
-    ADD KEY idx_payments_user_method (user_payment_method_ID),
-    ADD CONSTRAINT fk_payments_user_method
-        FOREIGN KEY (user_payment_method_ID) REFERENCES tbd_user_payment_methods (ID);
+-- El respaldo_compra ya incluye estos campos; mantener el paso repetible
+-- tanto en restauraciones anteriores como en las actuales.
+SET @ddl = IF((SELECT COUNT(*) FROM information_schema.columns
+               WHERE table_schema=DATABASE() AND table_name='tb_payments'
+                 AND column_name='user_payment_method_ID')=0,
+    'ALTER TABLE tb_payments ADD COLUMN user_payment_method_ID BIGINT UNSIGNED NULL AFTER order_ID',
+    'SELECT 1');
+PREPARE stmt FROM @ddl; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+SET @ddl = IF((SELECT COUNT(*) FROM information_schema.statistics
+               WHERE table_schema=DATABASE() AND table_name='tb_payments'
+                 AND index_name='idx_payments_user_method')=0,
+    'ALTER TABLE tb_payments ADD KEY idx_payments_user_method (user_payment_method_ID)',
+    'SELECT 1');
+PREPARE stmt FROM @ddl; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+SET @ddl = IF((SELECT COUNT(*) FROM information_schema.table_constraints
+               WHERE constraint_schema=DATABASE() AND table_name='tb_payments'
+                 AND constraint_name='fk_payments_user_method')=0,
+    'ALTER TABLE tb_payments ADD CONSTRAINT fk_payments_user_method FOREIGN KEY (user_payment_method_ID) REFERENCES tbd_user_payment_methods (ID)',
+    'SELECT 1');
+PREPARE stmt FROM @ddl; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
-ALTER TABLE tb_shipments
-    ADD COLUMN delivery_address_ID BIGINT UNSIGNED NULL AFTER seller_order_ID,
-    ADD KEY idx_shipments_delivery_address (delivery_address_ID),
-    ADD CONSTRAINT fk_shipments_delivery_address
-        FOREIGN KEY (delivery_address_ID) REFERENCES tb_user_addresses (ID);
+SET @ddl = IF((SELECT COUNT(*) FROM information_schema.columns
+               WHERE table_schema=DATABASE() AND table_name='tb_shipments'
+                 AND column_name='delivery_address_ID')=0,
+    'ALTER TABLE tb_shipments ADD COLUMN delivery_address_ID BIGINT UNSIGNED NULL AFTER seller_order_ID',
+    'SELECT 1');
+PREPARE stmt FROM @ddl; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+SET @ddl = IF((SELECT COUNT(*) FROM information_schema.statistics
+               WHERE table_schema=DATABASE() AND table_name='tb_shipments'
+                 AND index_name='idx_shipments_delivery_address')=0,
+    'ALTER TABLE tb_shipments ADD KEY idx_shipments_delivery_address (delivery_address_ID)',
+    'SELECT 1');
+PREPARE stmt FROM @ddl; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+SET @ddl = IF((SELECT COUNT(*) FROM information_schema.table_constraints
+               WHERE constraint_schema=DATABASE() AND table_name='tb_shipments'
+                 AND constraint_name='fk_shipments_delivery_address')=0,
+    'ALTER TABLE tb_shipments ADD CONSTRAINT fk_shipments_delivery_address FOREIGN KEY (delivery_address_ID) REFERENCES tb_user_addresses (ID)',
+    'SELECT 1');
+PREPARE stmt FROM @ddl; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 INSERT INTO tbc_payment_methods_types (code, description, status)
 VALUES ('DEBIT_CARD_SIM', 'Tarjeta de debito simulada para Practica 04', b'1')
 ON DUPLICATE KEY UPDATE description = VALUES(description), status = b'1';
+
+INSERT INTO tbc_payment_methods_types (code, description, status)
+VALUES
+    ('SPIN_CARD_SIM', 'Tarjeta digital Spin simulada para Practica 04', b'1'),
+    ('SPEI_ACCOUNT_SIM', 'Cuenta SPEI simulada para Practica 04', b'1'),
+    ('GIFT_COUPON_SIM', 'Cupon de regalo simulado para Practica 04', b'1')
+ON DUPLICATE KEY UPDATE description = VALUES(description), status = b'1';
+
+-- Los casos usan las tablas existentes para registrar métodos, pagos y envíos.
 
 -- Las ofertas son necesarias porque el carrito y los pedidos apuntan a ellas.
 -- user_ID NULL identifica el catalogo de productos preparado para esta demo.
@@ -35,6 +72,20 @@ WHERE p.status = b'1'
   )
 ORDER BY p.ID
 LIMIT 5;
+
+-- Categoria comun para que el Caso 3 tenga tres productos elegibles aun cuando
+-- las categorias historicas no coincidan entre las ofertas de demostracion.
+INSERT INTO tbc_categories (name, description, status, last_update)
+VALUES ('Practica04-Categoria-Casos', 'Clasificacion de prueba para los casos 3 a 5', b'1', NOW())
+ON DUPLICATE KEY UPDATE description=VALUES(description),status=b'1',last_update=NOW();
+INSERT IGNORE INTO tbd_products_categories (category_ID,product_ID,status,last_update)
+SELECT c.ID,o.product_ID,b'1',NOW()
+FROM tbc_categories c
+JOIN tbd_users_offer_products o ON o.user_ID IS NULL AND o.status=b'1'
+JOIN tb_products p ON p.ID=o.product_ID AND p.status=b'1'
+WHERE c.name='Practica04-Categoria-Casos'
+  AND p.current_price>0 AND p.current_stock>=3 AND o.available_stock>=3
+ORDER BY o.product_offer_ID LIMIT 5;
 
 -- Rutina de atencion con validacion y descuento atomico en ambos inventarios.
 DELIMITER $$
@@ -119,6 +170,7 @@ BEGIN
     SET s.delivery_address_ID = p_address_id
     WHERE so.order_ID = p_order_id;
 END$$
+
 DELIMITER ;
 
 -- Confirmar que quedaron cinco productos de prueba disponibles.

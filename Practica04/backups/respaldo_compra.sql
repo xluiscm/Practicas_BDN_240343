@@ -23,8 +23,6 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'd3a5fcb9-cfff-11f0-a6b2-bcfce756c792:1-30959';
-
 --
 -- Table structure for table `tb_buyer_orders`
 --

@@ -9,6 +9,7 @@ Periodo: Septiembre - Diciembre 2026
 | 1. | Práctica 02 | Conexión Remota en MYSQL | 42 | Concluida |
 | 2. | Conexiones Remotas para Bases de Datos SQL | Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales | 60 | Concluida |
 | 3. | Práctica 03 | Manipulación de datos en conexiones remotas | 50 | Concluida |
+| 4. | Práctica 04 | Simulación de compra, cancelaciones, reembolsos y entrega | — | En desarrollo |
 
 
 # Práctica 02 - Base de Datos `db_test`
