@@ -28,13 +28,14 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 
 - [Diccionario interactivo de Práctica 03](https://xluiscm.github.io/Practicas_BDN_240343/diccionario/diccionario.html)
 - [Diccionario de datos de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html)
-- [Diagrama ERE de Práctica 04](Practica04/diccionario/diagrama_ere.md)
+- [Relaciones entre tablas de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/relaciones.html)
+- [Diagrama ERE de Práctica 04 en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diagrama_ere.html)
 - [Consultas para verificar los cinco casos de Práctica 04](Practica04/queries/visualizar_casos_prueba_1_a_5.sql)
 - [Mapa general de Archify](.archify/db-test-corregida-resumen-20261108/diccionario-esquema.html)
 - [Documentación técnica de Práctica 03](Practica03/docs/DOCUMENTACION_DB_TEST.md)
 
 ## Diccionario en GitHub Pages
 
-El sitio está preparado en `docs/`: el `index.html` enlaza los diccionarios de las Prácticas 03 y 04. El acceso directo al diccionario de la Práctica 04 es [GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html). Se publican vistas HTML y JavaScript, sin respaldos SQL ni CSV. En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`. Al regenerar los diccionarios, los scripts de las Prácticas 03 y 04 actualizan también sus copias de publicación.
+El sitio está preparado en `docs/`: el `index.html` enlaza el diccionario de la Práctica 03 y las vistas de diccionario, relaciones y diagrama ERE de la Práctica 04. Los enlaces de acceso directo están arriba. Se publican vistas HTML y JavaScript, sin respaldos SQL ni CSV. En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`. Al regenerar los diccionarios, los scripts de las Prácticas 03 y 04 actualizan también sus copias de publicación.
 
 Abre el README de cada práctica para consultar sus objetivos, respaldos e instrucciones de uso.

@@ -88,7 +88,7 @@ foreach ($table in $tables) {
 $relationHtml = [System.Text.StringBuilder]::new()
 [void]$relationHtml.AppendLine('<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Relaciones · db_test_corregida</title>')
 [void]$relationHtml.AppendLine('<style>:root{color-scheme:light dark}body{font:16px/1.5 system-ui;max-width:1200px;margin:2rem auto;padding:0 1rem;background:#f2f5f9;color:#172538}h1{margin-bottom:.3rem}.muted{color:#56677d}.wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.8rem}.node,.edge{background:white;border:1px solid #d7e0ea;border-radius:12px;padding:.9rem}.node{border-top:3px solid #245f8e}.edge{border-left:4px solid #6c55a3}.node b{color:#245f8e}.edge code{font-family:ui-monospace,monospace}@media(prefers-color-scheme:dark){body{background:#101821;color:#e5edf5}.node,.edge{background:#18232e;border-color:#344453}.node b{color:#74b6e9}.muted{color:#b0bfce}}</style>')
-[void]$relationHtml.AppendLine("<h1>Relaciones entre tablas</h1><p class='muted'>Fuente: <code>respaldo_5casostotalesfinal.sql</code> · $($tables.Count) tablas · $($relationships.Count) claves foráneas. Las relaciones parten de la tabla que contiene la FK hacia la tabla referenciada.</p><p><a href='diccionario.html'>Diccionario</a> · <a href='diagrama_ere.md'>Diagrama ERE (Mermaid)</a> · <a href='campos.csv'>CSV</a></p><input id='q' placeholder='Filtrar tabla o relación'><h2>Entidades</h2><section class='wrap'>")
+[void]$relationHtml.AppendLine("<h1>Relaciones entre tablas</h1><p class='muted'>Fuente: <code>respaldo_5casostotalesfinal.sql</code> · $($tables.Count) tablas · $($relationships.Count) claves foráneas. Las relaciones parten de la tabla que contiene la FK hacia la tabla referenciada.</p><p><a href='diccionario.html'>Diccionario</a> · <a href='diagrama_ere.html'>Diagrama ERE</a> · <a href='campos.csv'>CSV</a></p><input id='q' placeholder='Filtrar tabla o relación'><h2>Entidades</h2><section class='wrap'>")
 foreach ($table in $tables) {
     $nameHtml = & $htmlEncode $table.Name
     [void]$relationHtml.AppendLine("<article class='node' data-search='$($nameHtml.ToLowerInvariant())'><b>$nameHtml</b><br>$($table.Fields.Count) campos</article>")
@@ -142,6 +142,17 @@ $erdDocument = [System.Text.StringBuilder]::new()
 [void]$erdDocument.AppendLine('```')
 [System.IO.File]::WriteAllText((Join-Path $outputDir 'diagrama_ere.md'), $erdDocument.ToString(), $utf8)
 
+$diagramHtml = @"
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diagrama ERE · Práctica 04</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;margin:0;background:#0b1020;color:#eef2ff}header{padding:1rem 2rem}a{color:#c4b5fd}.diagram{overflow:auto;padding:1rem}#diagram{min-width:1200px;background:#fff;color:#172033;border-radius:12px;padding:1rem} .mermaid{display:flex;justify-content:center}</style>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:true,theme:'default',er:{diagramPadding:24}});</script></head><body>
+<header><h1>Diagrama ERE — Práctica 04</h1><p>Fuente: respaldo_5casostotalesfinal.sql. Incluye atributos PK/FK y relaciones declaradas en el DDL.</p><nav><a href="diccionario.html">Diccionario</a> · <a href="relaciones.html">Relaciones</a> · <a href="https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/diagrama_ere.md">Fuente Mermaid en GitHub</a></nav></header>
+<main class="diagram"><pre id="diagram" class="mermaid">
+$($erd.ToString())
+</pre></main></body></html>
+"@
+[System.IO.File]::WriteAllText((Join-Path $outputDir 'diagrama_ere.html'), $diagramHtml, $utf8)
+
 $annex = [System.Collections.Generic.List[string]]::new()
 $annex.Add('# Anexo técnico — db_test_corregida')
 $annex.Add('')
@@ -163,13 +174,13 @@ New-Item -ItemType Directory -Force -Path $publicDir | Out-Null
 $githubBase = 'https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/'
 $publicDictionary = [System.IO.File]::ReadAllText((Join-Path $outputDir 'diccionario.html'))
 $publicDictionary = $publicDictionary.Replace("href='campos.csv'", "href='${githubBase}campos.csv'")
-$publicDictionary = $publicDictionary.Replace("href='diagrama_ere.md'", "href='${githubBase}diagrama_ere.md'")
+$publicDictionary = $publicDictionary.Replace("href='diagrama_ere.md'", "href='diagrama_ere.html'")
 $publicDictionary = $publicDictionary.Replace("href='anexo_tecnico.md'", "href='${githubBase}anexo_tecnico.md'")
 [System.IO.File]::WriteAllText((Join-Path $publicDir 'diccionario.html'), $publicDictionary, $utf8)
 $publicRelations = [System.IO.File]::ReadAllText((Join-Path $outputDir 'relaciones.html'))
-$publicRelations = $publicRelations.Replace("href='diagrama_ere.md'", "href='${githubBase}diagrama_ere.md'")
 $publicRelations = $publicRelations.Replace("href='campos.csv'", "href='${githubBase}campos.csv'")
 [System.IO.File]::WriteAllText((Join-Path $publicDir 'relaciones.html'), $publicRelations, $utf8)
+[System.IO.File]::Copy((Join-Path $outputDir 'diagrama_ere.html'), (Join-Path $publicDir 'diagrama_ere.html'), $true)
 
 Write-Output "Generado: $($tables.Count) tablas, $($fields.Count) campos y $($relationships.Count) claves foráneas en $outputDir"
 Write-Output "Publicado para GitHub Pages: $publicDir"

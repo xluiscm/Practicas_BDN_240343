@@ -41,7 +41,7 @@ Practica04/
 
 ## Diccionario de datos y diagrama ERE
 
-La documentación se genera desde el DDL de `backups/respaldo_5casostotalesfinal.sql` y cubre 27 tablas, 225 campos y 33 claves foráneas. Abre `diccionario/diccionario.html` para buscar campos; `diccionario/diagrama_ere.md` contiene el diagrama ERE Mermaid. `diccionario/relaciones.html` y `diccionario/campos.csv` ofrecen vistas complementarias. Para regenerar los archivos después de cambiar el respaldo, ejecuta `powershell -ExecutionPolicy Bypass -File scripts/generar_diccionario.ps1` desde `Practica04`.
+La documentación se genera desde el DDL de `backups/respaldo_5casostotalesfinal.sql` y cubre 27 tablas, 225 campos y 33 claves foráneas. Consulta el [diccionario de datos en GitHub Pages](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diccionario.html), las [relaciones entre tablas](https://xluiscm.github.io/Practicas_BDN_240343/practica04/relaciones.html) y el [diagrama ERE interactivo](https://xluiscm.github.io/Practicas_BDN_240343/practica04/diagrama_ere.html). También están los archivos fuente `diccionario/diagrama_ere.md`, `diccionario/campos.csv` y `diccionario/anexo_tecnico.md`. Para regenerar la documentación después de cambiar el respaldo, ejecuta `powershell -ExecutionPolicy Bypass -File scripts/generar_diccionario.ps1` desde `Practica04`; el script actualiza las vistas publicadas en `docs/practica04/`.
 
 ## Caso de prueba 1
 
