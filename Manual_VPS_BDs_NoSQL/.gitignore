@@ -1,0 +1,15 @@
+# Variables de entorno y secretos
+.env
+**/.env
+!.env.example
+!**/.env.example
+
+# Respaldos de bases de datos
+*.archive
+*.dump
+*.sql.save
+
+# Dependencias y archivos temporales
+node_modules/
+npm-debug.log*
+.DS_Store
