@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 import typeDefs from './typeDefs.js';
 import resolvers from './resolvers.js';
 
-const uri = process.env.MONGO_URI || '[CREDENCIALES_ELIMINADAS]';
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
 await client.connect();
