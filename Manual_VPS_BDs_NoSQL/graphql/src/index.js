@@ -9,7 +9,7 @@ const client = new MongoClient(uri);
 
 await client.connect();
 const db = client.db('ecommerce');
-console.log('✅ Conectado a MongoDB');
+console.log('Conectado a MongoDB');
 
 const server = new ApolloServer({
   typeDefs,
@@ -17,7 +17,10 @@ const server = new ApolloServer({
 });
 
 const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000, host: '0.0.0.0' }
+  listen: { port: 4000, host: '0.0.0.0' },
+  context: async ({ req }) => ({
+    clientIp: req.socket.remoteAddress || 'desconocida'
+  })
 });
 
-console.log(`🚀 GraphQL listo en ${url}`);
+console.log(`GraphQL listo en ${url}`);

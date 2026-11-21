@@ -39,5 +39,13 @@ export default `#graphql
       rating: Int!
       comment: String!
     ): Review
+
+    updateReview(
+      id: ID!
+      rating: Int
+      comment: String
+    ): Review
+
+    deleteReview(id: ID!): Boolean
   }
 `;
