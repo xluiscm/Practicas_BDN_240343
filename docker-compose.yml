@@ -1,0 +1,86 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_u1
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - ecommerce_net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_u1
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - ecommerce_net
+
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb_u2
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ecommerce
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+      - ./mongodb:/docker-entrypoint-initdb.d:ro
+    networks:
+      - ecommerce_net
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongoexpress_u2
+    restart: unless-stopped
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: ${ME_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${ME_PASSWORD}
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    networks:
+      - ecommerce_net
+
+  graphql:
+    build: ./graphql
+    container_name: graphql_u2
+    restart: unless-stopped
+    environment:
+      MONGO_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017/ecommerce?authSource=admin
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb
+    networks:
+      - ecommerce_net
+
+volumes:
+  pgdata:
+  mongodata:
+
+networks:
+  ecommerce_net:
+    driver: bridge
