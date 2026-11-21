@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "49a0c966-d159-4539-a484-71a4f5143e2b",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\candidate.json",
+  "output": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+  "specification": {
+    "sha256": "edad8d4b66079815ac000fc131e263adc4ee503a9816d1e9d82372d74041c239",
+    "bytes": 4781
+  },
+  "artifact": {
+    "sha256": "0347450a6dd04523ed094bcad51741d16bffcfc604d4f047fdcf2bb12691888d",
+    "bytes": 836450
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\candidate.json",
+    "sha256": "edad8d4b66079815ac000fc131e263adc4ee503a9816d1e9d82372d74041c239",
+    "bytes": 4781
+  },
+  "artifact": {
+    "path": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+    "sha256": "0347450a6dd04523ed094bcad51741d16bffcfc604d4f047fdcf2bb12691888d",
+    "bytes": 836450
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.finalize.json",
+    "summaryReceipt": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-08T05:06:36.305Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 9526,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "resolvedCrossovers": 2
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [
+        {
+          "left": {
+            "id": "fk-1",
+            "from": "compras",
+            "to": "usuarios",
+            "label": "3 FK",
+            "collectionIndex": 0,
+            "artifactIndex": 1
+          },
+          "right": {
+            "id": "fk-3",
+            "from": "devoluciones",
+            "to": "usuarios",
+            "label": "2 FK",
+            "collectionIndex": 2,
+            "artifactIndex": 3
+          },
+          "point": [
+            415,
+            239
+          ],
+          "sharedNode": "usuarios"
+        },
+        {
+          "left": {
+            "id": "fk-3",
+            "from": "devoluciones",
+            "to": "usuarios",
+            "label": "2 FK",
+            "collectionIndex": 2,
+            "artifactIndex": 3
+          },
+          "right": {
+            "id": "fk-4",
+            "from": "pagos",
+            "to": "compras",
+            "label": "1 FK",
+            "collectionIndex": 3,
+            "artifactIndex": 4
+          },
+          "point": [
+            415,
+            290.5
+          ]
+        }
+      ],
+      "detours": [],
+      "truncated": false
+    },
+    "hints": [
+      "compras → usuarios and devoluciones → usuarios cross next to usuarios: move node compras or devoluciones so the two reach usuarios from different sides (for example one level with it, one directly above or below it).",
+      "devoluciones → usuarios crosses pagos → compras: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

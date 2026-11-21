@@ -1,0 +1,1536 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "standard",
+  "startedAt": "2026-11-08T05:57:17.189Z",
+  "specification": {
+    "path": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\candidate.json",
+    "sha256": "edad8d4b66079815ac000fc131e263adc4ee503a9816d1e9d82372d74041c239",
+    "bytes": 4781
+  },
+  "artifact": {
+    "path": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+    "sha256": "0347450a6dd04523ed094bcad51741d16bffcfc604d4f047fdcf2bb12691888d",
+    "bytes": 836450
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "architecture",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\candidate.json",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+        "--quality",
+        "standard",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "edad8d4b66079815ac000fc131e263adc4ee503a9816d1e9d82372d74041c239",
+          "bytes": 4781
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 4,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "3 FK",
+              "labelRelationship": {
+                "id": "fk-2",
+                "from": "devoluciones",
+                "to": "compras",
+                "label": "3 FK",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 1,
+              "labelRect": {
+                "x": 794,
+                "y": 282.5,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 30,
+              "threshold": 2,
+              "from": [
+                232,
+                290.5
+              ],
+              "to": [
+                985,
+                290.5
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "2 FK",
+              "labelRelationship": {
+                "id": "fk-3",
+                "from": "devoluciones",
+                "to": "usuarios",
+                "label": "2 FK",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 1,
+              "labelRect": {
+                "x": 400,
+                "y": 286,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 30,
+              "threshold": 2,
+              "from": [
+                232,
+                290.5
+              ],
+              "to": [
+                985,
+                290.5
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "1 FK",
+              "labelRelationship": {
+                "id": "fk-5",
+                "from": "devoluciones",
+                "to": "pagos",
+                "label": "1 FK",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "fk-3",
+                "from": "devoluciones",
+                "to": "usuarios",
+                "label": "2 FK",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 400,
+                "y": 432,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 15,
+              "threshold": 2,
+              "from": [
+                450,
+                438
+              ],
+              "to": [
+                415,
+                438
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "1 FK",
+              "labelRelationship": {
+                "id": "fk-7",
+                "from": "pagos",
+                "to": "usuarios",
+                "label": "1 FK",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 203,
+                "y": 370,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                232,
+                390
+              ],
+              "to": [
+                232,
+                290.5
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 1283,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "architecture",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\candidate.json",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+        "--quality",
+        "standard",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "49a0c966-d159-4539-a484-71a4f5143e2b",
+        "ok": true,
+        "command": "deliver",
+        "type": "architecture",
+        "input": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\candidate.json",
+        "output": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+        "specification": {
+          "sha256": "edad8d4b66079815ac000fc131e263adc4ee503a9816d1e9d82372d74041c239",
+          "bytes": 4781
+        },
+        "artifact": {
+          "sha256": "0347450a6dd04523ed094bcad51741d16bffcfc604d4f047fdcf2bb12691888d",
+          "bytes": 836450
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 4,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "3 FK",
+              "labelRelationship": {
+                "id": "fk-2",
+                "from": "devoluciones",
+                "to": "compras",
+                "label": "3 FK",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 1,
+              "labelRect": {
+                "x": 794,
+                "y": 282.5,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 30,
+              "threshold": 2,
+              "from": [
+                232,
+                290.5
+              ],
+              "to": [
+                985,
+                290.5
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "2 FK",
+              "labelRelationship": {
+                "id": "fk-3",
+                "from": "devoluciones",
+                "to": "usuarios",
+                "label": "2 FK",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 1,
+              "labelRect": {
+                "x": 400,
+                "y": 286,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 30,
+              "threshold": 2,
+              "from": [
+                232,
+                290.5
+              ],
+              "to": [
+                985,
+                290.5
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "1 FK",
+              "labelRelationship": {
+                "id": "fk-5",
+                "from": "devoluciones",
+                "to": "pagos",
+                "label": "1 FK",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "fk-3",
+                "from": "devoluciones",
+                "to": "usuarios",
+                "label": "2 FK",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 400,
+                "y": 432,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 15,
+              "threshold": 2,
+              "from": [
+                450,
+                438
+              ],
+              "to": [
+                415,
+                438
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "1 FK",
+              "labelRelationship": {
+                "id": "fk-7",
+                "from": "pagos",
+                "to": "usuarios",
+                "label": "1 FK",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 203,
+                "y": 370,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                232,
+                390
+              ],
+              "to": [
+                232,
+                290.5
+              ]
+            }
+          ]
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 403,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "check",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+        "artifact": {
+          "sha256": "0347450a6dd04523ed094bcad51741d16bffcfc604d4f047fdcf2bb12691888d",
+          "bytes": 836450
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": [
+              "[composition/label-route-clearance] standard label \"3 FK\" on relationship id \"fk-2\" (\"devoluciones\" -> \"compras\") is 0px from relationship id \"fk-4\" (\"pagos\" -> \"compras\") segment 1 [232, 290.5] -> [985, 290.5] with 30px hidden by the mask (minimum 2px) — use renderer-supported label controls (message y for sequence; otherwise labelAt, labelDx, labelDy, or labelSegment), or adjust the other relationship route/via/channel.",
+              "[composition/label-route-clearance] standard label \"2 FK\" on relationship id \"fk-3\" (\"devoluciones\" -> \"usuarios\") is 0px from relationship id \"fk-4\" (\"pagos\" -> \"compras\") segment 1 [232, 290.5] -> [985, 290.5] with 30px hidden by the mask (minimum 2px) — use renderer-supported label controls (message y for sequence; otherwise labelAt, labelDx, labelDy, or labelSegment), or adjust the other relationship route/via/channel.",
+              "[composition/label-route-clearance] standard label \"1 FK\" on relationship id \"fk-5\" (\"devoluciones\" -> \"pagos\") is 0px from relationship id \"fk-3\" (\"devoluciones\" -> \"usuarios\") segment 0 [450, 438] -> [415, 438] with 15px hidden by the mask (minimum 2px) — use renderer-supported label controls (message y for sequence; otherwise labelAt, labelDx, labelDy, or labelSegment), or adjust the other relationship route/via/channel.",
+              "[composition/label-route-clearance] standard label \"1 FK\" on relationship id \"fk-7\" (\"pagos\" -> \"usuarios\") is 0px from relationship id \"fk-4\" (\"pagos\" -> \"compras\") segment 0 [232, 390] -> [232, 290.5] with 14px hidden by the mask (minimum 2px) — use renderer-supported label controls (message y for sequence; otherwise labelAt, labelDx, labelDy, or labelSegment), or adjust the other relationship route/via/channel."
+            ]
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "standard",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 4
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 2,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 4,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 0,
+            "desktopReadabilityIssues": 0,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 7.5,
+            "maxBends": 2,
+            "routesOverSuggestedBends": 0,
+            "maxStretch": 1.065,
+            "routesOverSuggestedStretch": 0,
+            "minSegmentPx": 24,
+            "minInteriorSegmentPx": 264,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [
+              {
+                "left": {
+                  "id": "fk-1",
+                  "from": "compras",
+                  "to": "usuarios",
+                  "label": "3 FK",
+                  "collectionIndex": 0,
+                  "artifactIndex": 1
+                },
+                "right": {
+                  "id": "fk-3",
+                  "from": "devoluciones",
+                  "to": "usuarios",
+                  "label": "2 FK",
+                  "collectionIndex": 2,
+                  "artifactIndex": 3
+                },
+                "point": [
+                  415,
+                  239
+                ],
+                "sharedNode": "usuarios"
+              },
+              {
+                "left": {
+                  "id": "fk-3",
+                  "from": "devoluciones",
+                  "to": "usuarios",
+                  "label": "2 FK",
+                  "collectionIndex": 2,
+                  "artifactIndex": 3
+                },
+                "right": {
+                  "id": "fk-4",
+                  "from": "pagos",
+                  "to": "compras",
+                  "label": "1 FK",
+                  "collectionIndex": 3,
+                  "artifactIndex": 4
+                },
+                "point": [
+                  415,
+                  290.5
+                ]
+              }
+            ],
+            "detours": []
+          },
+          "leadingSpace": {
+            "measured": true,
+            "emptyTopPx": 105,
+            "emptyTopRatio": 0.185,
+            "occupiedTop": 105,
+            "viewBoxTop": 0,
+            "canvasHeight": 568,
+            "typicalNodeHeight": 110,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "recognized-declared-wide",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 1106.25,
+            "actualBudgetPx": 1106.25,
+            "actualReaderWidth": 1136.25,
+            "desiredReaderWidth": 1136.25,
+            "viewportCap": 1376,
+            "limit": "source-size",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": true,
+            "hardFloorPx": 6,
+            "hardFloorMet": true,
+            "minimumOwner": {
+              "kind": "edge",
+              "id": "fk-1",
+              "from": "compras",
+              "to": "usuarios"
+            },
+            "minimumSourceTextPx": 8,
+            "minimumProjectedTextPx": 7.5,
+            "semanticTextCount": 20
+          },
+          "issues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "3 FK",
+              "labelRelationship": {
+                "id": "fk-2",
+                "from": "devoluciones",
+                "to": "compras",
+                "label": "3 FK",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 1,
+              "labelRect": {
+                "x": 794,
+                "y": 282.5,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 30,
+              "threshold": 2,
+              "from": [
+                232,
+                290.5
+              ],
+              "to": [
+                985,
+                290.5
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "2 FK",
+              "labelRelationship": {
+                "id": "fk-3",
+                "from": "devoluciones",
+                "to": "usuarios",
+                "label": "2 FK",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 1,
+              "labelRect": {
+                "x": 400,
+                "y": 286,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 30,
+              "threshold": 2,
+              "from": [
+                232,
+                290.5
+              ],
+              "to": [
+                985,
+                290.5
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "1 FK",
+              "labelRelationship": {
+                "id": "fk-5",
+                "from": "devoluciones",
+                "to": "pagos",
+                "label": "1 FK",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "fk-3",
+                "from": "devoluciones",
+                "to": "usuarios",
+                "label": "2 FK",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 400,
+                "y": 432,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 15,
+              "threshold": 2,
+              "from": [
+                450,
+                438
+              ],
+              "to": [
+                415,
+                438
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "1 FK",
+              "labelRelationship": {
+                "id": "fk-7",
+                "from": "pagos",
+                "to": "usuarios",
+                "label": "1 FK",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "fk-4",
+                "from": "pagos",
+                "to": "compras",
+                "label": "1 FK",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 203,
+                "y": 370,
+                "width": 30,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                232,
+                390
+              ],
+              "to": [
+                232,
+                290.5
+              ]
+            }
+          ]
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "49a0c966-d159-4539-a484-71a4f5143e2b"
+      }
+    },
+    "browser-check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 5649,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "browser-check",
+        "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+        "--json",
+        "--require-provenance"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "pass",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "49a0c966-d159-4539-a484-71a4f5143e2b",
+        "artifact": {
+          "path": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.html",
+          "sha256": "0347450a6dd04523ed094bcad51741d16bffcfc604d4f047fdcf2bb12691888d",
+          "bytes": 836450
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        "diagnostics": [],
+        "containment": {
+          "status": "pass",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 78,
+                "diagramChromePx": 78,
+                "svgPx": 648,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 725,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1763,
+              "diagramWidth": 1733,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 834,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1770,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 94,
+                "diagramChromePx": 298,
+                "svgPx": 852,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 90.15625,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 0,
+              "viewerChromeActive": false,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "themeStates": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            }
+          ]
+        },
+        "readability": {
+          "status": "pass",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 78,
+                "diagramChromePx": 78,
+                "svgPx": 648,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 725,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1763,
+              "diagramWidth": 1733,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 834,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1770,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 94,
+                "diagramChromePx": 298,
+                "svgPx": 852,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 90.15625,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 0,
+              "viewerChromeActive": false,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "viewerChrome": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 78,
+                "diagramChromePx": 78,
+                "svgPx": 648,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 725,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1763,
+              "diagramWidth": 1733,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 834,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1770,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 94,
+                "diagramChromePx": 298,
+                "svgPx": 852,
+                "cardsPx": 0,
+                "viewBoxHeight": 568
+              },
+              "viewBoxWidth": 1180,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "3 FK",
+              "minimumProjectedNodeTextDetail": "edge",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "edge",
+                "id": "fk-1",
+                "from": "compras",
+                "to": "usuarios"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 90.15625,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 0,
+              "viewerChromeActive": false,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "receipt": "diccionario-esquema.browser-check.json",
+          "files": []
+        }
+      }
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "diagnostics": [],
+  "evidence": {
+    "receipt": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.finalize.json",
+    "summaryReceipt": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\xidon\\Documents\\BDN\\Practicas_BDN_240343\\.archify\\db-test-corregida-resumen-20261108\\diccionario-esquema.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "finishedAt": "2026-11-08T05:57:26.715Z",
+  "durationMs": 9526,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-08T05:06:36.305Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

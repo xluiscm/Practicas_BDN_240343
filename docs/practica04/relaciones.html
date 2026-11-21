@@ -1,0 +1,65 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Relaciones · db_test_corregida</title>
+<style>:root{color-scheme:light dark}body{font:16px/1.5 system-ui;max-width:1200px;margin:2rem auto;padding:0 1rem;background:#f2f5f9;color:#172538}h1{margin-bottom:.3rem}.muted{color:#56677d}.wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.8rem}.node,.edge{background:white;border:1px solid #d7e0ea;border-radius:12px;padding:.9rem}.node{border-top:3px solid #245f8e}.edge{border-left:4px solid #6c55a3}.node b{color:#245f8e}.edge code{font-family:ui-monospace,monospace}@media(prefers-color-scheme:dark){body{background:#101821;color:#e5edf5}.node,.edge{background:#18232e;border-color:#344453}.node b{color:#74b6e9}.muted{color:#b0bfce}}</style>
+<h1>Relaciones entre tablas</h1><p class='muted'>Fuente: <code>respaldo_5casostotalesfinal.sql</code> · 27 tablas · 33 claves foráneas. Las relaciones parten de la tabla que contiene la FK hacia la tabla referenciada.</p><p><a href='diccionario.html'>Diccionario</a> · <a href='diagrama_ere.html'>Diagrama ERE</a> · <a href='https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/campos.csv'>CSV</a></p><input id='q' placeholder='Filtrar tabla o relación'><h2>Entidades</h2><section class='wrap'>
+<article class='node' data-search='tb_buyer_orders'><b>tb_buyer_orders</b><br>9 campos</article>
+<article class='node' data-search='tb_carts'><b>tb_carts</b><br>5 campos</article>
+<article class='node' data-search='tb_logs'><b>tb_logs</b><br>9 campos</article>
+<article class='node' data-search='tb_order_cancellations'><b>tb_order_cancellations</b><br>11 campos</article>
+<article class='node' data-search='tb_payment_transactions'><b>tb_payment_transactions</b><br>7 campos</article>
+<article class='node' data-search='tb_payments'><b>tb_payments</b><br>13 campos</article>
+<article class='node' data-search='tb_people'><b>tb_people</b><br>12 campos</article>
+<article class='node' data-search='tb_products'><b>tb_products</b><br>9 campos</article>
+<article class='node' data-search='tb_refunds'><b>tb_refunds</b><br>13 campos</article>
+<article class='node' data-search='tb_returns'><b>tb_returns</b><br>13 campos</article>
+<article class='node' data-search='tb_seller_orders'><b>tb_seller_orders</b><br>8 campos</article>
+<article class='node' data-search='tb_shipments'><b>tb_shipments</b><br>12 campos</article>
+<article class='node' data-search='tb_user_addresses'><b>tb_user_addresses</b><br>12 campos</article>
+<article class='node' data-search='tb_users'><b>tb_users</b><br>8 campos</article>
+<article class='node' data-search='tbc_categories'><b>tbc_categories</b><br>7 campos</article>
+<article class='node' data-search='tbc_payment_methods_types'><b>tbc_payment_methods_types</b><br>6 campos</article>
+<article class='node' data-search='tbc_payment_methods_types_res'><b>tbc_payment_methods_types_res</b><br>4 campos</article>
+<article class='node' data-search='tbd_address_components'><b>tbd_address_components</b><br>8 campos</article>
+<article class='node' data-search='tbd_cancellation_items'><b>tbd_cancellation_items</b><br>5 campos</article>
+<article class='node' data-search='tbd_cart_items'><b>tbd_cart_items</b><br>5 campos</article>
+<article class='node' data-search='tbd_order_items'><b>tbd_order_items</b><br>8 campos</article>
+<article class='node' data-search='tbd_orders'><b>tbd_orders</b><br>9 campos</article>
+<article class='node' data-search='tbd_products_categories'><b>tbd_products_categories</b><br>5 campos</article>
+<article class='node' data-search='tbd_return_items'><b>tbd_return_items</b><br>5 campos</article>
+<article class='node' data-search='tbd_user_payment_methods'><b>tbd_user_payment_methods</b><br>11 campos</article>
+<article class='node' data-search='tbd_users_offer_products'><b>tbd_users_offer_products</b><br>8 campos</article>
+<article class='node' data-search='tbd_wishlist_products'><b>tbd_wishlist_products</b><br>3 campos</article>
+</section><h2>Relaciones (claves foráneas)</h2><section class="wrap">
+<article class='edge' data-search='tb_buyer_orders tb_users fk_user_2 user_id id'><b>tb_buyer_orders</b> ⟶ <b>tb_users</b><p><code>user_ID</code> → <code>ID</code></p><small>fk_user_2</small></article>
+<article class='edge' data-search='tb_carts tb_users fk_cart_user user_id id'><b>tb_carts</b> ⟶ <b>tb_users</b><p><code>user_ID</code> → <code>ID</code></p><small>fk_cart_user</small></article>
+<article class='edge' data-search='tb_order_cancellations tb_buyer_orders fk_cancellation_order order_id id'><b>tb_order_cancellations</b> ⟶ <b>tb_buyer_orders</b><p><code>order_ID</code> → <code>ID</code></p><small>fk_cancellation_order</small></article>
+<article class='edge' data-search='tb_order_cancellations tb_users fk_cancellation_requester requested_by id'><b>tb_order_cancellations</b> ⟶ <b>tb_users</b><p><code>requested_by</code> → <code>ID</code></p><small>fk_cancellation_requester</small></article>
+<article class='edge' data-search='tb_order_cancellations tb_seller_orders fk_cancellation_seller_order seller_order_id id'><b>tb_order_cancellations</b> ⟶ <b>tb_seller_orders</b><p><code>seller_order_ID</code> → <code>ID</code></p><small>fk_cancellation_seller_order</small></article>
+<article class='edge' data-search='tb_payment_transactions tb_payments fk_payment_transaction_payment payment_id id'><b>tb_payment_transactions</b> ⟶ <b>tb_payments</b><p><code>payment_ID</code> → <code>ID</code></p><small>fk_payment_transaction_payment</small></article>
+<article class='edge' data-search='tb_payments tb_buyer_orders fk_payment_order order_id id'><b>tb_payments</b> ⟶ <b>tb_buyer_orders</b><p><code>order_ID</code> → <code>ID</code></p><small>fk_payment_order</small></article>
+<article class='edge' data-search='tb_payments tbd_user_payment_methods fk_payments_user_method user_payment_method_id id'><b>tb_payments</b> ⟶ <b>tbd_user_payment_methods</b><p><code>user_payment_method_ID</code> → <code>ID</code></p><small>fk_payments_user_method</small></article>
+<article class='edge' data-search='tb_people tb_users fk_persons_users user_id id'><b>tb_people</b> ⟶ <b>tb_users</b><p><code>user_ID</code> → <code>ID</code></p><small>fk_persons_users</small></article>
+<article class='edge' data-search='tb_refunds tb_order_cancellations fk_refund_cancellation cancellation_id cancellation_id'><b>tb_refunds</b> ⟶ <b>tb_order_cancellations</b><p><code>cancellation_ID</code> → <code>cancellation_ID</code></p><small>fk_refund_cancellation</small></article>
+<article class='edge' data-search='tb_refunds tb_payments fk_refund_payment payment_id id'><b>tb_refunds</b> ⟶ <b>tb_payments</b><p><code>payment_ID</code> → <code>ID</code></p><small>fk_refund_payment</small></article>
+<article class='edge' data-search='tb_refunds tb_returns fk_refund_return return_id return_id'><b>tb_refunds</b> ⟶ <b>tb_returns</b><p><code>return_ID</code> → <code>return_ID</code></p><small>fk_refund_return</small></article>
+<article class='edge' data-search='tb_returns tb_buyer_orders fk_return_order order_id id'><b>tb_returns</b> ⟶ <b>tb_buyer_orders</b><p><code>order_ID</code> → <code>ID</code></p><small>fk_return_order</small></article>
+<article class='edge' data-search='tb_returns tb_users fk_return_requester requested_by id'><b>tb_returns</b> ⟶ <b>tb_users</b><p><code>requested_by</code> → <code>ID</code></p><small>fk_return_requester</small></article>
+<article class='edge' data-search='tb_seller_orders tb_buyer_orders fk_seller_order_order order_id id'><b>tb_seller_orders</b> ⟶ <b>tb_buyer_orders</b><p><code>order_ID</code> → <code>ID</code></p><small>fk_seller_order_order</small></article>
+<article class='edge' data-search='tb_seller_orders tb_users fk_seller_order_seller seller_id id'><b>tb_seller_orders</b> ⟶ <b>tb_users</b><p><code>seller_ID</code> → <code>ID</code></p><small>fk_seller_order_seller</small></article>
+<article class='edge' data-search='tb_shipments tb_user_addresses fk_shipments_delivery_address delivery_address_id id'><b>tb_shipments</b> ⟶ <b>tb_user_addresses</b><p><code>delivery_address_ID</code> → <code>ID</code></p><small>fk_shipments_delivery_address</small></article>
+<article class='edge' data-search='tb_shipments tb_seller_orders fk_shipments_seller_order seller_order_id id'><b>tb_shipments</b> ⟶ <b>tb_seller_orders</b><p><code>seller_order_ID</code> → <code>ID</code></p><small>fk_shipments_seller_order</small></article>
+<article class='edge' data-search='tb_user_addresses tb_users fk_addresses_users user_id id'><b>tb_user_addresses</b> ⟶ <b>tb_users</b><p><code>user_ID</code> → <code>ID</code></p><small>fk_addresses_users</small></article>
+<article class='edge' data-search='tbc_categories tbc_categories fk_superior_category sup_id_category id'><b>tbc_categories</b> ⟶ <b>tbc_categories</b><p><code>sup_id_category</code> → <code>ID</code></p><small>fk_superior_category</small></article>
+<article class='edge' data-search='tbd_address_components tb_user_addresses fk_component_address address_id id'><b>tbd_address_components</b> ⟶ <b>tb_user_addresses</b><p><code>address_ID</code> → <code>ID</code></p><small>fk_component_address</small></article>
+<article class='edge' data-search='tbd_address_components tbd_address_components fk_component_parent address_id, address_sup_id address_id, id'><b>tbd_address_components</b> ⟶ <b>tbd_address_components</b><p><code>address_ID, address_sup_ID</code> → <code>address_ID, ID</code></p><small>fk_component_parent</small></article>
+<article class='edge' data-search='tbd_cart_items tb_carts fk_cart_item_cart cart_id id'><b>tbd_cart_items</b> ⟶ <b>tb_carts</b><p><code>cart_ID</code> → <code>ID</code></p><small>fk_cart_item_cart</small></article>
+<article class='edge' data-search='tbd_cart_items tbd_users_offer_products fk_cart_item_offer product_offer_id product_offer_id'><b>tbd_cart_items</b> ⟶ <b>tbd_users_offer_products</b><p><code>product_offer_ID</code> → <code>product_offer_ID</code></p><small>fk_cart_item_offer</small></article>
+<article class='edge' data-search='tbd_order_items tbd_users_offer_products fk_order_item_offer product_offer_id product_offer_id'><b>tbd_order_items</b> ⟶ <b>tbd_users_offer_products</b><p><code>product_offer_ID</code> → <code>product_offer_ID</code></p><small>fk_order_item_offer</small></article>
+<article class='edge' data-search='tbd_order_items tb_seller_orders fk_order_item_seller_order seller_order_id id'><b>tbd_order_items</b> ⟶ <b>tb_seller_orders</b><p><code>seller_order_ID</code> → <code>ID</code></p><small>fk_order_item_seller_order</small></article>
+<article class='edge' data-search='tbd_products_categories tbc_categories fk_category category_id id'><b>tbd_products_categories</b> ⟶ <b>tbc_categories</b><p><code>category_ID</code> → <code>ID</code></p><small>fk_category</small></article>
+<article class='edge' data-search='tbd_products_categories tb_products fk_product product_id id'><b>tbd_products_categories</b> ⟶ <b>tb_products</b><p><code>product_ID</code> → <code>ID</code></p><small>fk_product</small></article>
+<article class='edge' data-search='tbd_user_payment_methods tb_users tbd_user_payment_methods_ibfk_1 user_id id'><b>tbd_user_payment_methods</b> ⟶ <b>tb_users</b><p><code>user_ID</code> → <code>ID</code></p><small>tbd_user_payment_methods_ibfk_1</small></article>
+<article class='edge' data-search='tbd_user_payment_methods tbc_payment_methods_types tbd_user_payment_methods_ibfk_2 payment_method_type_id id'><b>tbd_user_payment_methods</b> ⟶ <b>tbc_payment_methods_types</b><p><code>payment_method_type_ID</code> → <code>ID</code></p><small>tbd_user_payment_methods_ibfk_2</small></article>
+<article class='edge' data-search='tbd_users_offer_products tb_products fk_product_2 product_id id'><b>tbd_users_offer_products</b> ⟶ <b>tb_products</b><p><code>product_ID</code> → <code>ID</code></p><small>fk_product_2</small></article>
+<article class='edge' data-search='tbd_wishlist_products tb_products fk_wishlist_product product_id id'><b>tbd_wishlist_products</b> ⟶ <b>tb_products</b><p><code>product_ID</code> → <code>ID</code></p><small>fk_wishlist_product</small></article>
+<article class='edge' data-search='tbd_wishlist_products tb_users fk_wishlist_user user_id id'><b>tbd_wishlist_products</b> ⟶ <b>tb_users</b><p><code>user_ID</code> → <code>ID</code></p><small>fk_wishlist_user</small></article>
+</section><script>document.querySelector("#q").addEventListener("input",e=>document.querySelectorAll("[data-search]").forEach(x=>x.hidden=!x.dataset.search.includes(e.target.value.toLowerCase())))</script></html>

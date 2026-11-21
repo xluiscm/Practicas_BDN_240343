@@ -1,0 +1,38 @@
+﻿# Instrucciones para generar y revisar el diccionario de Práctica 03
+
+## Objetivo
+
+Crear un diccionario de datos fiel al respaldo SQL de la base `db_test_corregida` y mantener el explorador HTML interactivo alineado con ese mismo respaldo.
+
+## Fuente y ejecución
+
+Trabaja desde la raíz del repositorio. Usa como fuente el respaldo indicado como argumento; si no se indica uno, elige el archivo `.sql` más recientemente modificado en `Practica03/backups/`.
+
+```powershell
+node Practica03/scripts/generar_diccionario_interactivo.js
+node Practica03/scripts/generar_diccionario_interactivo.js Practica03/backups/respaldo_10.sql
+```
+
+El generador debe obtener tablas, columnas, definiciones SQL, claves primarias, índices, claves foráneas y reglas `ON DELETE`/`ON UPDATE` del DDL. Debe contar las filas presentes en las sentencias `INSERT` sin confundir paréntesis dentro de valores de texto. No debe usar un CSV anterior como fuente del esquema.
+
+## Archivos de salida
+
+- `Practica03/diccionario/campos.csv`: índice tabular regenerado a partir del DDL seleccionado.
+- `Practica03/diccionario/diccionario.html`: explorador inicial basado en el mismo dump.
+- `Practica03/diccionario/backup-picker.js`: código que permite seleccionar otro `.sql` desde el navegador, analizarlo localmente y actualizar conteos, diagrama, tablas y relaciones.
+- `Practica03/docs/DOCUMENTACION_DB_TEST.md` y `Practica03/docs/diccionario/`: documentación técnica mantenida para el respaldo de referencia. Si cambia la fuente de referencia, vuelve a inspeccionar y actualizar estas fichas; no presentes inferencias funcionales como hechos confirmados por el DDL.
+
+## Requisitos del diccionario interactivo
+
+El HTML debe mostrar el nombre de la base, conteos de tablas, campos, claves foráneas y filas `INSERT`, un diagrama ER navegable, búsqueda y filtro por módulos, listado de tablas y el detalle de columnas con tipo SQL, PK/FK, nulabilidad, valor por defecto e índices. Al seleccionar una entidad se debe abrir su detalle y hacer visible el panel de campos y relaciones.
+
+El selector de respaldo debe aceptar archivos `.sql` locales, reconstruir el diagrama y los detalles desde el archivo escogido y reportar errores de lectura de forma comprensible. El procesamiento del archivo seleccionado ocurre en el navegador; no se debe cargar a un servidor.
+
+## Reglas de precisión
+
+- Usa exclusivamente evidencia del respaldo para describir estructura, relaciones y conteos.
+- Distingue hechos del SQL de interpretaciones funcionales.
+- El conteo de filas corresponde a `INSERT` encontrados en el dump; no representa datos en vivo de una instancia.
+- No inventes vistas, rutinas, triggers, reglas de negocio ni cardinalidades que no aparezcan en la fuente.
+- Conserva los respaldos históricos y los CSV de la práctica; no los reemplaces al generar el diccionario.
+- Mantén los archivos en UTF-8 y los enlaces relativos válidos.

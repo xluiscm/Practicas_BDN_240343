@@ -1,0 +1,154 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diagrama ERE · Práctica 04</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;margin:0;background:#0b1020;color:#eef2ff}header{padding:1rem 2rem}a{color:#c4b5fd}.diagram{overflow:auto;padding:1rem}#diagram{min-width:1200px;background:#fff;color:#172033;border-radius:12px;padding:1rem} .mermaid{display:flex;justify-content:center}</style>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:true,theme:'default',er:{diagramPadding:24}});</script></head><body>
+<header><h1>Diagrama ERE — Práctica 04</h1><p>Fuente: respaldo_5casostotalesfinal.sql. Incluye atributos PK/FK y relaciones declaradas en el DDL.</p><nav><a href="diccionario.html">Diccionario</a> · <a href="relaciones.html">Relaciones</a> · <a href="https://github.com/xluiscm/Practicas_BDN_240343/blob/master/Practica04/diccionario/diagrama_ere.md">Fuente Mermaid en GitHub</a></nav></header>
+<main class="diagram"><pre id="diagram" class="mermaid">
+%% ERE generado desde las claves primarias y foráneas del respaldo final de Practica04.
+%% Los atributos se limitan a PK/FK para mantener legible el diagrama; el diccionario incluye todos los campos.
+erDiagram
+    tb_buyer_orders {
+        int ID PK
+        int user_ID FK
+    }
+    tb_carts {
+        int ID PK
+        int user_ID FK
+    }
+    tb_logs {
+        int ID PK
+    }
+    tb_order_cancellations {
+        int cancellation_ID PK
+        int order_ID FK
+        int seller_order_ID FK
+        int requested_by FK
+    }
+    tb_payment_transactions {
+        int ID PK
+        int payment_ID FK
+    }
+    tb_payments {
+        int ID PK
+        int order_ID FK
+        int user_payment_method_ID FK
+    }
+    tb_people {
+        int person_ID PK
+        int user_ID FK
+    }
+    tb_products {
+        int ID PK
+    }
+    tb_refunds {
+        int refund_ID PK
+        int payment_ID FK
+        int cancellation_ID FK
+        int return_ID FK
+    }
+    tb_returns {
+        int return_ID PK
+        int order_ID FK
+        int requested_by FK
+    }
+    tb_seller_orders {
+        int ID PK
+        int order_ID FK
+        int seller_ID FK
+    }
+    tb_shipments {
+        int shipment_ID PK
+        int seller_order_ID FK
+        int delivery_address_ID FK
+    }
+    tb_user_addresses {
+        int ID PK
+        int user_ID FK
+    }
+    tb_users {
+        int ID PK
+    }
+    tbc_categories {
+        int ID PK
+        int sup_id_category FK
+    }
+    tbc_payment_methods_types {
+        int ID PK
+    }
+    tbc_payment_methods_types_res {
+        int id PK
+    }
+    tbd_address_components {
+        int ID PK
+        int address_ID FK
+        int address_sup_ID FK
+    }
+    tbd_cancellation_items {
+        int id PK
+    }
+    tbd_cart_items {
+        int cart_ID PK,FK
+        int product_offer_ID PK,FK
+    }
+    tbd_order_items {
+        int ID PK
+        int seller_order_ID FK
+        int product_offer_ID FK
+    }
+    tbd_orders {
+        int ID PK
+    }
+    tbd_products_categories {
+        int category_ID PK,FK
+        int product_ID PK,FK
+    }
+    tbd_return_items {
+        int id PK
+    }
+    tbd_user_payment_methods {
+        int ID PK
+        int user_ID FK
+        int payment_method_type_ID FK
+    }
+    tbd_users_offer_products {
+        int product_offer_ID PK
+        int product_ID FK
+    }
+    tbd_wishlist_products {
+        int user_ID PK,FK
+        int product_ID PK,FK
+    }
+    tb_users ||--o{ tb_buyer_orders : fk_user_2
+    tb_users ||--o| tb_carts : fk_cart_user
+    tb_buyer_orders ||--o{ tb_order_cancellations : fk_cancellation_order
+    tb_users ||--o{ tb_order_cancellations : fk_cancellation_requester
+    tb_seller_orders o|--o{ tb_order_cancellations : fk_cancellation_seller_order
+    tb_payments ||--o{ tb_payment_transactions : fk_payment_transaction_payment
+    tb_buyer_orders ||--o{ tb_payments : fk_payment_order
+    tbd_user_payment_methods o|--o{ tb_payments : fk_payments_user_method
+    tb_users o|--o| tb_people : fk_persons_users
+    tb_order_cancellations o|--o{ tb_refunds : fk_refund_cancellation
+    tb_payments ||--o{ tb_refunds : fk_refund_payment
+    tb_returns o|--o{ tb_refunds : fk_refund_return
+    tb_buyer_orders ||--o{ tb_returns : fk_return_order
+    tb_users ||--o{ tb_returns : fk_return_requester
+    tb_buyer_orders ||--o{ tb_seller_orders : fk_seller_order_order
+    tb_users ||--o{ tb_seller_orders : fk_seller_order_seller
+    tb_user_addresses o|--o{ tb_shipments : fk_shipments_delivery_address
+    tb_seller_orders ||--o{ tb_shipments : fk_shipments_seller_order
+    tb_users ||--o{ tb_user_addresses : fk_addresses_users
+    tbc_categories o|--o{ tbc_categories : fk_superior_category
+    tb_user_addresses ||--o{ tbd_address_components : fk_component_address
+    tbd_address_components o|--o{ tbd_address_components : fk_component_parent
+    tb_carts ||--o{ tbd_cart_items : fk_cart_item_cart
+    tbd_users_offer_products ||--o{ tbd_cart_items : fk_cart_item_offer
+    tbd_users_offer_products ||--o{ tbd_order_items : fk_order_item_offer
+    tb_seller_orders ||--o{ tbd_order_items : fk_order_item_seller_order
+    tbc_categories ||--o{ tbd_products_categories : fk_category
+    tb_products ||--o{ tbd_products_categories : fk_product
+    tb_users ||--o{ tbd_user_payment_methods : tbd_user_payment_methods_ibfk_1
+    tbc_payment_methods_types ||--o{ tbd_user_payment_methods : tbd_user_payment_methods_ibfk_2
+    tb_products ||--o{ tbd_users_offer_products : fk_product_2
+    tb_products ||--o{ tbd_wishlist_products : fk_wishlist_product
+    tb_users ||--o{ tbd_wishlist_products : fk_wishlist_user
+
+</pre></main></body></html>
