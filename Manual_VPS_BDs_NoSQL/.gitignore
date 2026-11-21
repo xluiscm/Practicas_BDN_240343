@@ -13,3 +13,7 @@
 node_modules/
 npm-debug.log*
 .DS_Store
+
+# Respaldos temporales de configuracion y codigo
+*.bak
+*.bak.*
