@@ -14,6 +14,7 @@ db.createView("vw_shipments_in_transit", "col_shipment_tracking", [
 ]);
 
 db.createView("vw_seller_reviews", "col_products_reviews", [
+  { $match: { seller_id: { $type: "int" } } },
   { $group: { _id: "$seller_id", total: { $sum: 1 }, promedio: { $avg: "$rating" } } }
 ]);
 
